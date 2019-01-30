@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+    <% include header %>
+
+
+</head>
+<body>
+    <div class="container">
+        <!-- navbar -->
+            <div class="navbar">
+                <div class="profileImage">
+                    <img id="profileImage1" src="/user_add-512.png">
+                    <h3>userName</h3>
+                    <input id="imageUpload" type="file" 
+                                name="profile_photo" placeholder="Photo" required="" capture>
+                </div>
+                <div class="navs">
+                    <div class="list">
+                        <div class="listIcon">
+                                <span><i class="fas fa-chart-line fa-lg"></i></span>
+                                <span><i class="fas fa-dollar-sign fa-lg"></i></span>
+                                <span><i class="fas fa-users fa-lg"></i></span>
+                                <span><i class="fas fa-piggy-bank fa-lg"></i></span>
+                                <span><i class="fas fa-question-circle fa-lg"></i></span>
+                        </div>
+                        <div class="listName">
+
+                            <a href="#">Dashboard</a>
+                            <a href="#">Budget</a>
+                            <a href="#">Profile</a>
+                            <a href="#">Bank</a>
+                            <a href="#">How it works</a>
+                        </div>
+                    </div>
+                    <div class="list2">
+                            <div class="listIcon2">
+                                    <span><i class="fab fa-github fa-lg"></i></span>
+                                    <span><i class="fab fa-instagram fa-lg"></i></span>
+                                    <span><i class="fab fa-facebook fa-lg"></i></span>
+    
+                            </div>
+                            <div class="listName2">
+    
+                                <a href="#">Github</a>
+                                <a href="#">Instagram</a>
+                                <a href="#">Facebook</a>
+                            </div>
+                        </div>
+                        <div class="list3">
+                            <div class="listIcon3">
+                                    <span><i class="fas fa-briefcase fa-lg"></i></span>
+                                    <span><i class="fas fa-handshake fa-lg"></i></span>
+                                    <span><i class="fas fa-cog fa-lg"></i></span>
+    
+                            </div>
+                            <div class="listName3">
+                                <a href="#">Careers</a>
+                                <a href="#">Privacy Agreement</a>
+                                <a href="#">Settings</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- board -->
+            <div class="board">
+                <div class="header">
+                    <div class="logo">
+                        <!-- logo -->
+                        <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+                    </div>
+
+                    <div class="login">
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+                <div class="welcomeBack">
+                    <h3>Welcome back, userName</h3>
+                </div>
+                <div class="graphRow1">
+                    <div class="graph1" style="height: 175px" style="width: 175px">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="graph2" style="height: 175px"  style="width: 175px">
+                            <canvas id="myChart2"></canvas>
+                    </div>
+
+                </div>
+                <div class="graphRow2">
+                    <div class="graph3">
+                        <h1>Total Income</h1>
+                        <div class="number1">
+                            <p>$2,001.23</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="graph4">
+                        <h1>Total Expenses</h1>
+                        <div class="number1">
+                                <p>$500.54</p>
+                            </div>
+                            <hr>
+                    </div>
+                    <div class="graph5">
+                        <h1>Total Budget Left</h1>
+                        <div class="number1">
+                                <p>$30.00</p>
+                            </div>
+                            <hr>
+                    </div>
+                    <div class="graph6">
+                            <h1>Total Budget</h1>
+                            <div class="number1">
+                                    <p>$1,000.00</p>
+                                </div>
+                                <hr>
+                        </div>
+
+                </div>
+                <div class="graphRow3">
+                    <div class="graph7">
+                        <h1>Popular Category</h1>
+                        <div class="category">
+                            <div class="categoryIcon">
+                                <span><i class="fas fa-utensils fa-lg"></i></span>
+                                <span><i class="fas fa-gas-pump fa-lg"></i></span>
+                                <span><i class="fas fa-home fa-lg"></i></span>
+                                <span><i class="fas fa-hand-holding-usd fa-lg"></i></span>
+                                <span><i class="fas fa-shopping-bag fa-lg"></i></span>
+                            </div>
+                            <div class="categoryName">
+                                <a href="#">Food</a>
+                                <a href="#">Fuel</a>
+                                <a href="#">Rent</a>
+                                <a href="#">other</a>
+                                <a href="#">Groceries</a>
+                            </div>
+                            <div class="categoryPercent">
+                                <p>60%</p>
+                                <p>40%</p>
+                                <p>30%</p>
+                                <p>20%</p>
+                                <p>14%</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="graph8">
+                            <h1>Recent Transactions</h1>
+                            <div class="categoryTransaction">
+                                <div class="transactionName">
+                                    <a href="#">Octane coffee</a>
+                                    <a href="#">Target</a>
+                                    <a href="#">Skill Fund loan</a>
+                                    <a href="#">QuickTrip gas</a>
+                                    <a href="#">LoveShack</a>
+                                </div>
+                                <div class="categoryAmount">
+                                    <p>$4</p>
+                                    <p>$34</p>
+                                    <p>$150</p>
+                                    <p>$26</p>
+                                    <p>$86</p>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="graph9">
+
+                    </div>
+                </div>
+            </div>
+    </div> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
