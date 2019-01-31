@@ -66,13 +66,58 @@ app.get('/',(req,res,next)=>{
 })
 
 app.get('/login', (req, res, next)=>{
-  let msg;
-  if(req.query.msg == 'noUser'){
-      msg = '<h2 class="text-danger">This email is not registered in our system. Please try again or register!</h2>'
-  }else if(req.query.msg == 'badPass'){
-      msg = '<h2 class="text-warning">This password is not associated with this email. Please enter again</h2>'
-  }
-res.render('login',{msg});
+res.render('login',{});
+console.log("got to the login page");
 });
 
+app.post('/loginProcess',(req,res,next)=>{
+  // res.json(req.body);
+  const email = req.body.email;
+  // this is the English version of the password the user submitted
+  const password = req.body.password;
+  // we now need to get the hashed version fro mthe DB, and compare!
+  const checkPasswordQuery = `SELECT * FROM users WHERE email =?`;
+  connection.query(checkPasswordQuery,[email],(error, results)=>{
+      if(error){throw error;}
+      // possibilities:
+      // 1. No match, i.e. the user isn't not in the database.
+      if(results.length == 0 ){
+          // we don't care what password they gave us, send them back to /login
+          res.redirect('/login?msg=noUser');
+      }else{
+          //user exists...
+          // 2. We found the user, but the password doesn't match
+          const passwordsMatch = bcrypt.compareSync(password,results[0].hash);
+          if(!passwordsMatch){
+              // goodbye
+              res.redirect('/login?msg=badPass');
+          }else{
+              // 3. We found the user and the password matches
+              //these are the droids we're looking for!!
+              //-NOTE: every single http request (route) is 
+              // a completely new request
+              // Cookies: Stores data in the browser, with a key on the server 
+              // every single page request the entire cookie is sent to the server 
+              // Sessions: Stores data on the server, with a key(cookie) on the browser
+              req.session.name = results[0].name;
+              req.session.email = results[0].email;
+              // req.session.id = results[0].id;
+              req.session.uid = results[0].id;
+              req.session.loggedIn = true;
+              res.redirect('/?msg=loginSuccess');
+              // response is set, HTTP disconnects, we are done
+          }        
+      }
+  })
+})
+
+app.get('/logout',(req, res, next)=>{
+  // delete all session varibles for this user
+  req.session.destroy();
+  res.redirect('/login?msg=loggedOut')
+})
+
+
 module.exports = app;
+
+
