@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+    <% include header %>
 
 
 </head>
@@ -17,7 +17,7 @@
         <!-- navbar -->
             <div class="navbar">
                 <div class="profileImage">
-                    <img id="profileImage1" src="user_add-512.png">
+                    <img id="profileImage1" src="/user_add-512.png">
                     <h3>userName</h3>
                     <input id="imageUpload" type="file" 
                                 name="profile_photo" placeholder="Photo" required="" capture>
@@ -62,7 +62,6 @@
     
                             </div>
                             <div class="listName3">
-    
                                 <a href="#">Careers</a>
                                 <a href="#">Privacy Agreement</a>
                                 <a href="#">Settings</a>
@@ -70,31 +69,49 @@
                         </div>
                 </div>
             </div>
-        <div class="budget">
-            <div class="header">
-                    <div class="logo">
-                        <!-- logo -->
-                        <a href="#">App Name and logo</a>
+
+            <div class="ProfileSettings">
+                    <div class="header">
+                        <div class="logo">
+                            <!-- logo -->
+                            <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+                        </div>
+    
+                        <div class="login">
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+                    <div class="welcomeBack">
+                        <h3>Welcome back, userName</h3>
                     </div>
 
-                    <div class="login">
-                        <a href="#">Logout</a>
-                    </div>
-            </div>
-                <div class="welcomeBack">
-                    <h3>Welcome back, userName</h3>
-                </div>
+                    <div class="settings">
+                    
+                        <form class="changeSetting">
+                                <h1>Basic Info</h1>
+                            <label for="userName"><b>User Name</b></label>
+                            <input type="text" placeholder="Enter User Name" name="name" required>
 
-            <div class="budgetGraph">
-                <div class="graphRow4">
-                    <div class="graph10">
-                        <canvas id="myChart3" style="height: 400px" style="width: 400px"></canvas>
-                    </div>
-            </div>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required>
+                        
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                        
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                            
+                            <label>
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="submit" class="signupbtn">Sign Up</button>
+                            </div>
+                        </form>
 
-        </div> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-        <script src="budget.js"></script>
-    </body>
-    </html>
+                    </div>
+            </div> 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+                <script src="/main.js"></script>
+            </body>
+            </html>
