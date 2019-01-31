@@ -23,5 +23,15 @@ router.get('/budget', function(req, res) {
     if(error){throw error;}
   });
 });
+router.get('/bank', function(req, res) {
+  res.render('bank',{
+    if(error){throw error;}
+  });
+});
+router.get('/profile', function(req, res) {
+  res.render('profile',{
+    if(error){throw error;}
+  });
+});
 
 module.exports = router;

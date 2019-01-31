@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+    <% include header %>
+
+
+</head>
+<body>
+    <div class="container">
+        <!-- navbar -->
+            <div class="navbar">
+                <div class="profileImage">
+                    <img id="profileImage1" src="/user_add-512.png">
+                    <h3>userName</h3>
+                    <input id="imageUpload" type="file" 
+                                name="profile_photo" placeholder="Photo" required="" capture>
+                </div>
+                <div class="navs">
+                    <div class="list">
+                        <div class="listIcon">
+                                <span><i class="fas fa-chart-line fa-lg"></i></span>
+                                <span><i class="fas fa-dollar-sign fa-lg"></i></span>
+                                <span><i class="fas fa-users fa-lg"></i></span>
+                                <span><i class="fas fa-piggy-bank fa-lg"></i></span>
+                                <span><i class="fas fa-question-circle fa-lg"></i></span>
+                        </div>
+                        <div class="listName">
+
+                            <a href="/dashboard">Dashboard</a>
+                            <a href="/budget">Budget</a>
+                            <a href="/profile">Profile</a>
+                            <a href="/bank">Bank</a>
+                            <a href="#">How it works</a>
+                        </div>
+                    </div>
+                    <div class="list2">
+                            <div class="listIcon2">
+                                    <span><i class="fab fa-github fa-lg"></i></span>
+                                    <span><i class="fab fa-instagram fa-lg"></i></span>
+                                    <span><i class="fab fa-facebook fa-lg"></i></span>
+    
+                            </div>
+                            <div class="listName2">
+    
+                                <a href="#">Github</a>
+                                <a href="#">Instagram</a>
+                                <a href="#">Facebook</a>
+                            </div>
+                        </div>
+                        <div class="list3">
+                            <div class="listIcon3">
+                                    <span><i class="fas fa-briefcase fa-lg"></i></span>
+                                    <span><i class="fas fa-handshake fa-lg"></i></span>
+                                    <span><i class="fas fa-cog fa-lg"></i></span>
+    
+                            </div>
+                            <div class="listName3">
+                                <a href="#">Careers</a>
+                                <a href="#">Privacy Agreement</a>
+                                <a href="#">Settings</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="ProfileSettings">
+                    <div class="header">
+                        <div class="logo">
+                            <!-- logo -->
+                            <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+                        </div>
+    
+                        <div class="login">
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+                    <div class="welcomeBack">
+                        <h3>Hello userName</h3>
+                    </div>
+
+                    <div class="settings">
+                        <form class="changeSetting">
+                                <h1>Basic Info</h1>
+                            <label for="userName"><b>User Name</b></label>
+                            <input type="text" placeholder="Enter User Name" name="name" required>
+
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required>
+                        
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                        
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                            
+                            <label>
+                            <div class="clearfix1">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn1">Cancel</button>
+                                <button type="submit" class="signupbtn1">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
+            </div> 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+                <script src="/main.js"></script>
+            </body>
+            </html>
