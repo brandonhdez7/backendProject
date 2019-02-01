@@ -47,13 +47,15 @@ router.post('/registerProcess',(req,res)=>{
   //       })
   //     }
   //   })
-  res.json(req.body);
-  const insertUserQuery = `INSERT INTO users (userName, userEmail, password)
+  // res.json(req.body);
+  const insertUserQuery = `INSERT INTO users (id,userName, userEmail, password)
     VALUES
-    (?,?,?)`;
-  connection.query(insertUserQuery,[req.body.name, req.body.email, psw], (error, results)=>{
+    (DEFAULT,?,?,?)`;
+  connection.query(insertUserQuery,[req.body.name, req.body.email, req.body.psw], (error, results)=>{
     if(error){throw error;}
+    res.redirect('/dashboard');
   })
+  
 })
 
 router.get('/dashboard', function(req, res) {
