@@ -1,8 +1,11 @@
-var client = localStorage.getItem('client')
-
+// const config = require('/config')
+// var client = config.secret
+// console.log(client)
+// let config = require('/config')
+var clients = localStorage.getItem('clients')
+console.log(clients)
 const clientId = localStorage.getItem('clientId')
 
-console.log(clientId) 
 // var clientId = localStorage.getItem('clientId')
 // console.log(clientId)
 var ACCESS_TOKEN = 'access-sandbox-02f9b2c9-cafc-4880-9823-507e3f63f5a5'

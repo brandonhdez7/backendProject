@@ -143,4 +143,3 @@ router.get('/bank', (req, res)=>{
   })
 })
 module.exports = router;
-
