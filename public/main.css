@@ -1,6 +1,9 @@
+html,body{height: 100%; overflow: auto}
+
 body{
     margin: 0px;
     font-family: 'Fira Sans', sans-serif;
+    background-color: #404040
 }
 .container{
     margin: 0px;
@@ -372,18 +375,137 @@ hr{
 
 /* budget */
 
+.budget-feedback,
+.expense-feedback {
+  display: none;
+}
+.showItem{
+    display: block;
+}
+.showRed {
+    color: #b30000;
+  }
+  .showGreen {
+    color: #40bf80;
+  }
+  .showBlack {
+    color: #7575a3;
+  }
+.budgetDisplay{
+    display: flex;
+    width: 95%;
+    background-color: #262626;
+    border-radius: 5px;
+    margin: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.budgetSubmit{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    height: 250px;
+    border: 1px solid #d9d9d9;
+    margin: 10px;
+
+}
+.budgetSubmit h1{
+    font-size: 17px;
+} 
+.budgetSubmit input{
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #a6a6a6;
+    font-size: 15px;
+    color: #262626;
+}
+.expense-form .enterExpense{
+    width: 200px;
+    padding: 10px;
+    font-size: 15px;
+    color: #262626;
+}
+
+form input .enterExpense{
+    width: 50px;
+}
+.budgetButton{
+    width: 150px;
+    border-radius: 5px;
+    background-color: #00cc99;
+    border: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0px 30px 0px;
+    padding: 10px; 
+}
+
+.budget-form{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    align-items: center;
+}
+.expense-form{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+.expense1, .expense2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.expense2{
+    padding-right: 40px;
+}
 
 .budget{
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100%;
     background-color: #404040;
     align-items: center;
     color:  #d9d9d9;  
+    height: max-content;
+}
+.expense-list{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    height: max-content;
+    border: 1px solid #d9d9d9;
+    margin: 10px;
+}
+.expense-list__info{
+    display: flex;
+    flex-direction: row;
+}
+.list-item{
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+}
+.delete-icon{
+    color:red;
+}
+.edit-icon{
+    color: green;
 }
 
-.graphRow4{
+.budgetGraph{
     width: 95%;
     background-color: #262626;
     border-radius: 5px;
@@ -394,13 +516,13 @@ hr{
     justify-content: space-between;
     height: 400px;
 }
-.graph10{
+.graphRow4{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 300px;
     margin: 15px;
-    width: max-content;
+    width: 100%;
 }
 
 /* login page */
@@ -622,15 +744,16 @@ hr{
 
 /* modal  box*/
 .modal {
+    box-sizing: border-box;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top */
-    padding-top: 50px; /* Location of the box */
+    padding-top: 0px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: none;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
