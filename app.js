@@ -63,10 +63,12 @@ app.use((err, req, res, next)=>{
 
 // Define some middleware, if the user is logged in, 
 // then send the user data over to the view
+
 app.use('*',(req, res, next)=>{
-  // console.log("Middleware is working!");
+  console.log("Middleware is working! from app.js");
   if(req.session.loggedIn){
       // res.locals is the variable that gets sent to the view
+      req.session.name = "someName";
       res.locals.name = req.session.name;
       res.locals.id = req.session.id;
       res.locals.email = req.session.email;
