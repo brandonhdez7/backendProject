@@ -16,7 +16,7 @@
             <div class="navbar">
                 <div class="profileImage">
                     <img id="profileImage1" src="/user_add-512.png">
-                    <h3>userName</h3> <!-- userName -->
+                    <h3><%= name %></h3> 
                     <input id="imageUpload" type="file" 
                                 name="profile_photo" placeholder="Photo" required="" capture>
                 </div>
@@ -77,11 +77,11 @@
                     </div>
 
                     <div class="login">
-                        <a href="#">Logout</a>
+                        <a href="/logout">Logout</a>
                     </div>
                 </div>
                 <div class="welcomeBack">
-                    <h3>Welcome back, userName</h3> <!-- userName-->
+                    <h3>Welcome back, <%= name %></h3> 
                 </div>
                 <div class="graphRow1">
                     <div class="graph1" style="height: 175px" style="width: 175px">
