@@ -58,12 +58,6 @@ router.post('/registerProcess',(req,res)=>{
         })
       }
     })
-    // let msg;
-    // if(req.query.msg == 'register'){
-    //     msg = 'This email adress is already registered.';
-    // }
-    // res.render('register',{msg})
-
 })
 
 router.get('/login', function(req, res) {
@@ -99,7 +93,7 @@ router.post('/loginProcess',(req,res)=>{
                   // req.session.id = results[0].id;
                   req.session.uid = results[0].id;
                   req.session.loggedIn = true;
-                  res.redirect('/dashboard?msg=loginSuccess');
+                  res.redirect('/dashboard');
                   // response is set, HTTP disconnects, we are done
               }        
           }
