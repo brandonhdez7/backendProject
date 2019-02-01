@@ -3,11 +3,14 @@ var router = express.Router();
 const bcrypt = require('bcrypt-nodejs');
 const expressSession = require('express-session');
 
+const multer = require('multer');
+const upload = multer({ dest: 'public/images/' })
 
 const mysql = require('mysql');
 const config = require('../config');
 const connection = mysql.createConnection(config.db);
 connection.connect();
+
 
 router.use('*',(req, res, next)=>{
   console.log("Middleware is working! from routes/index.js");
@@ -35,41 +38,36 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/registerProcess',(req,res)=>{
-  // const hashedPass = bcrypt.hashSync(req.body.password);
-  // // Before we insert a new user into the users table, we need
-  // // to make sure this email isn't already in the db
-  // const checkUserQuery = `SELECT * FROM users WHERE email = ?`;
-  // connection.query(checkUserQuery,[req.body.email],(error,results)=>{
-  //   if(error){throw error;}
-  //   if(results.length != 0){
-  //     // our query returned a row, that means this email is already registered
-  //     res.render('/register?msg=register');
-  //   }else{
-  //     // this is a new user! Insert them!
-  //     const insertUserQuery = `INSERT INTO users (name, email, hash)
-  //       VALUES
-  //       (?,?,?)`;
-  //     connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
-  //         if(error2){throw error2;}
-  //       })
-  //     }
-  //   })
-  // res.json(req.body);
-  const hashedPass = bcrypt.hashSync(req.body.psw);
-  const insertUserQuery = `INSERT INTO users (id,userName, userEmail, password)
-    VALUES
-    (DEFAULT,?,?,?)`;
-  connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass], (error, results)=>{
+  const hashedPass = bcrypt.hashSync(req.body.password);
+  // Before we insert a new user into the users table, we need
+  // to make sure this email isn't already in the db
+  const checkUserQuery = `SELECT * FROM users WHERE userEmail = ?`;
+  connection.query(checkUserQuery,[req.body.email],(error,results)=>{
     if(error){throw error;}
-    res.redirect('/');
-  })
-  
+    if(results.length != 0){
+      // our query returned a row, that means this email is already registered
+      res.redirect('/?msg=register');
+    }else{
+      // this is a new user! Insert them!
+      const insertUserQuery = `INSERT INTO users (userName, userEmail, password)
+        VALUES
+        (?,?,?)`;
+      connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
+          if(error2){throw error2;}
+          res.redirect('/');
+        })
+      }
+    })
+    // let msg;
+    // if(req.query.msg == 'register'){
+    //     msg = 'This email adress is already registered.';
+    // }
+    // res.render('register',{msg})
+
 })
 
 router.get('/login', function(req, res) {
-  res.render('login',{
-    if(error){throw error;}
-  });
+	res.render('login');
 });
 
 router.post('/loginProcess',(req,res)=>{
