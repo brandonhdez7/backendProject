@@ -78,57 +78,60 @@
                         <a href="#">Logout</a>
                     </div>
             </div>
-                <div class="welcomeBack">
-                    <h3>Hello userName</h3>
-                </div>
+            <div class="welcomeBack">
+                <h3>Hello userName</h3>
+            </div>
 
 
             <div class="budgetDisplay">
                 <div class="budgetSubmit">
-                    <div class="budget-feedback">budget feedback</div>
                     <form id="budget-form" class="budget-form">
-                        <h1 class="budgetText">please enter your budget</h1>
+                            <div class="budget-feedback">budget feedback</div>
+                        <h1 class="budgetText">Enter your budget</h1>
                         <input type="number" id="budget-input">
                         <button type="submit" class="budgetButton" id="budget-submit">calculate</button>
                     </form>
-                    <div class="expense-feedback">expense feedback</div>
                     <form id="expense-form" class="expense-form">
-                        <h1 class="budgetText">please enter your expense</h1>
-                        <input type="text" class="enterExpense" id="expense-input">
-
-                        <h1 class="budgetTitle">please enter expense amount</h1>
-                        <input type="number" id="amount-input">
-                        <button type="submit" class="budgetButton" id="expense-submit">add expense</button>
+                        <div class="expense1">
+                                <div class="budget-feedback">budget feedback</div>
+                            <h1 class="budgetText">Enter your expense</h1>
+                            <input type="text" class="enterExpense" id="expense-input">
+                        </div>
+                        <div class="expense2"> 
+                            <h1 class="budgetTitle">Enter expense amount</h1>
+                            <input type="number" id="amount-input">
+                            <button type="submit" class="budgetButton" id="expense-submit">add expense</button>
+                        </div>
                     </form>
                 </div>
 
-            <div class="budgetExpenses">
+             <!-- <div class="budgetExpenses"> -->
                     <div class="graphRow2">
                             <div class="graph3">
                                 <h1>Total Income</h1>
                                 <div class="number1">
-                                    <p>0</p> <!-- income -->
+                                    <p><span>$</span>0</p> <!-- income -->
                                 </div>
                                 <hr>
                             </div>
                             <div class="graph4">
                                 <h1>Total Expenses</h1>
                                 <div class="number1" id="balance">
-                                        <p id="expense-amount">0</p> <!-- expense -->
+                                        <p id="expense-amount"><span>$</span>0</p> <!-- expense -->
                                     </div>
                                     <hr>
                             </div>
                             <div class="graph5">
                                 <h1>Total Balance</h1>
                                 <div class="number1" id="balance">
-                                        <p id="balance-amount">0</p> <!-- balance -->
+                                        <p id="balance-amount"><span>$</span>0</p> <!-- balance -->
                                     </div>
                                     <hr>
-                            </div>
+                            </div>     
                             <div class="graph6">
                                     <h1>Total Budget</h1>
                                     <div class="number1" id="balance">
-                                            <p id="budget-amount">0</p>
+                                            <p id="budget-amount"><span>$</span>0</p>
                                         </div>
                                         <hr>
                              </div>
@@ -147,14 +150,15 @@
 
                     
 
-
-            <!-- <div class="budgetGraph">
+            </div>
+            <div class="budgetGraph">
                 <div class="graphRow4">
                     <div class="graph10">
                         <canvas id="myChart3" style="height: 400px" style="width: 400px"></canvas>
                     </div>
-            </div> -->
-
+                </div>
+                
+            </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
