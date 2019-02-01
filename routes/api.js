@@ -2,9 +2,9 @@
 // var client = config.secret
 // console.log(client)
 // let config = require('/config')
-var clients = localStorage.getItem('clients')
-console.log(clients)
-const clientId = localStorage.getItem('clientId')
+// var clients = localStorage.getItem('clients')
+// console.log(clients)
+// const clientId = localStorage.getItem('clientId')
 
 // var clientId = localStorage.getItem('clientId')
 // console.log(clientId)

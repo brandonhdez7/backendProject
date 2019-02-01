@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/registerProcess',(req,res)=>{
-  const hashedPass = bcrypt.hashSync(req.body.password);
+  const hashedPass = bcrypt.hashSync(req.body.psw);
   // Before we insert a new user into the users table, we need
   // to make sure this email isn't already in the db
   const checkUserQuery = `SELECT * FROM users WHERE userEmail = ?`;
