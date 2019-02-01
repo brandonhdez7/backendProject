@@ -21,13 +21,11 @@ const sessionOptions = ({
   saveUninitialized: true,
 })
 app.use(expressSession(sessionOptions));
-
 // // Set up MySQL Connection
 // const mysql = require('mysql');
 // let connection = mysql.createConnection(config.db);
 // // we have a connection, lets connect
 // connection.connect();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -106,7 +104,7 @@ app.post('/loginProcess',(req,res,next)=>{
               req.session.loggedIn = true;
               res.redirect('/?msg=loginSuccess');
               // response is set, HTTP disconnects, we are done
-          }        
+          }     
       }
   })
 })

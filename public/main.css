@@ -374,6 +374,86 @@ hr{
 
 /* budget */
 
+.budget-feedback,
+.expense-feedback {
+  display: none;
+}
+.showItem{
+    display: block;
+}
+.showRed {
+    color: #b30000;
+  }
+  .showGreen {
+    color: #40bf80;
+  }
+  .showBlack {
+    color: #7575a3;
+  }
+.budgetDisplay{
+    display: flex;
+    width: 95%;
+    background-color: #262626;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+
+}
+.budgetSubmit{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+
+}
+.budgetSubmit form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.budgetSubmit h1{
+    font-size: 20px;
+} 
+.budgetSubmit input{
+    width: 200px;
+}
+.expense-form .enterExpense{
+    width: 200px;
+}
+form input .enterExpense{
+    width: 50px;
+}
+.budgetButton{
+    width: 150px;
+    border-radius: 5px;
+    background-color: #00cc99;
+    border: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0px 30px 0px;
+    padding: 10px; 
+}
+
+.budget-form{
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+.expense-form{
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+.expense-form2{
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+
 
 .budget{
     display: flex;

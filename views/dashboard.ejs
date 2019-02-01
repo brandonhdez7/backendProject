@@ -3,14 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TBH:DashBoard</title>
+    <title>DashBoard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
     <% include header %>
-
-
 </head>
 <body>
     <div class="container">
@@ -18,7 +16,7 @@
             <div class="navbar">
                 <div class="profileImage">
                     <img id="profileImage1" src="/user_add-512.png">
-                    <h3>userName</h3> <!-- <%= userName %> -->
+                    <h3>userName</h3> <!-- userName -->
                     <input id="imageUpload" type="file" 
                                 name="profile_photo" placeholder="Photo" required="" capture>
                 </div>
@@ -75,7 +73,7 @@
                 <div class="header">
                     <div class="logo">
                         <!-- logo -->
-                        <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
+                        <i class="fas fa-wallet fa-lg"></i><a href="">The Budget Hobo</a>
                     </div>
 
                     <div class="login">
@@ -83,7 +81,7 @@
                     </div>
                 </div>
                 <div class="welcomeBack">
-                    <h3>Welcome back, userName</h3> <!-- <%= userName %>-->
+                    <h3>Welcome back, userName</h3> <!-- userName-->
                 </div>
                 <div class="graphRow1">
                     <div class="graph1" style="height: 175px" style="width: 175px">
@@ -98,28 +96,28 @@
                     <div class="graph3">
                         <h1>Total Income</h1>
                         <div class="number1">
-                            <p>$2,001.23</p> <!-- <%= income => -->
+                            <p>$2,001.23</p> <!-- income -->
                         </div>
                         <hr>
                     </div>
                     <div class="graph4">
                         <h1>Total Expenses</h1>
-                        <div class="number1">
-                                <p>$500.54</p> <!-- <%= expenses %> -->
+                        <div class="number1" id="balance">
+                                <p id="expense-amount">$500.54</p> <!-- expense -->
                             </div>
                             <hr>
                     </div>
                     <div class="graph5">
-                        <h1>Total Budget Left</h1>
-                        <div class="number1">
-                                <p>$30.00</p> <!-- -->
+                        <h1>Total Balance</h1>
+                        <div class="number1" id="balance">
+                                <p id="balance-amount">$30.00</p> <!-- -->
                             </div>
                             <hr>
                     </div>
                     <div class="graph6">
                             <h1>Total Budget</h1>
-                            <div class="number1">
-                                    <p>$1,000.00</p>
+                            <div class="number1" id="balance">
+                                    <p id="budget-amount">$1,000.00</p>
                                 </div>
                                 <hr>
                         </div>
