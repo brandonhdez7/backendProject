@@ -3,13 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
+    <title>BudgetHobo</title>
+=======
     <title>The Budget Hobo</title>
+>>>>>>> master
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
     <% include header %>
-
+    
 
 </head>
   <body>
@@ -19,8 +23,8 @@
             <!-- logo -->
             <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
         </div>
-        <div class="login" >
-            <a href="/login">Login</a>
+        <div class="login">
+            <a id="login" href="/login">Login</a>
         </div>
       </div>
       <div class="loginPage">
@@ -178,8 +182,50 @@
       </div>  
       </div>
     </div>
+    <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  <script>
+    (function($){
+      // console.log(PLAID_PRODUCTS)
+      let products = ('PLAID_PRODUCTS', 'transactions').split(',');
 
-  <script src="index.js"></script>
+
+      var handler = Plaid.create({
+        apiVersion: 'v2',
+        clientName: 'The Budget Hobo',
+        env: 'sandbox',
+        product: products,
+        key: '6131daca2965f9a28481697d1aa0d4',
+        onSuccess: (public_token)=>{
+          $.post('/get_access_token', {
+            public_token: public_token
+          }),
+          (data)=> {
+            $('.head').fadeOut('fast', ()=>{
+
+            })
+          }
+        }
+      })
+      var accessToken = qs('access_token');
+      if (accessToken != null && accessToken != '') {
+        $.post('/set_access_token', {
+          access_token: accessToken
+        }, (data)=>{
+  
+        });
+      }
+      // $('.login').on('click', function(e) {
+      // handler.open();
+      // });
+    })(jQuery)
+    function qs(key) {
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+    }
+  </script>
   </body>
 </html>
 

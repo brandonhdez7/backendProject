@@ -1,57 +1,161 @@
-<button id="link-button">Link Account</button>
-<script 
-src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-<script 
-src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
-<script type="text/javascript">
-(function($) {
-  var handler = Plaid.create({
-    clientName: '5c4f83d1ca63910011f18edb',
-    env: '575f24b01bf3d0723f783f3d7be994',
-    // Replace with your public_key from the Dashboard
-    key: '643da13c8f8bdb1c24f57ac1d23702',
-    product: ['transactions'],
-    // Optional, use webhooks to get transaction and error updates
-    webhook: 'https://requestb.in',
-    // Optional, specify a language to localize Link
-    language: 'en',
-    onLoad: function() {
-      // Optional, called when Link loads
-    },
-    onSuccess: function(public_token, metadata) {
-      // Send the public_token to your app server.
-      // The metadata object contains info about the institution the
-      // user selected and the account ID or IDs, if the
-      // Select Account view is enabled.
-      $.post('/get_access_token', {
-        public_token: public_token,
-      });
-    },
-    onExit: function(err, metadata) {
-      // The user exited the Link flow.
-      if (err != null) {
-        // The user encountered a Plaid API error prior to exiting.
-      }
-      // metadata contains information about the institution
-      // that the user selected and the most recent API request IDs.
-      // Storing this information can be helpful for support.
-    },
-    onEvent: function(eventName, metadata) {
-      // Optionally capture Link flow events, streamed through
-      // this callback as your users connect an Item to Plaid.
-      // For example:
-      // eventName = "TRANSITION_VIEW"
-      // metadata  = {
-      //   link_session_id: "123-abc",
-      //   mfa_type:        "questions",
-      //   timestamp:       "2017-09-14T14:42:19.350Z",
-      //   view_name:       "MFA",
-      // }
-    }
-  });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Plaid Quickstart Example</title>
+<link rel="stylesheet" href="https://threads.plaid.com/threads.css">
 
-  $('#link-button').on('click', function(e) {
-    handler.open();
-  });
-})(jQuery);
-</script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <main class="main">
+        <div class="grid">
+            <div class="grid__column grid__column--is-twelve-columns">
+                <div class="login">
+                    <a id="login" href="/login">Login</a>
+                </div>
+            <div id="app" display="none" class="connected-view">
+        <div class="box">
+            <h3 class="box__heading">Products</h3>
+
+            <!-- Auth -->
+            <div class="item-data-row">
+                <div class="item-data-row__left">
+                    <div class="item-data-row__request-type">post</div>
+                </div>
+                <div class="item-data-row__center">
+                    <div class="item-data-row__nicename">Auth</div>
+                    <div class="item-data-row__endpoint">/auth/get</div>
+                    <div class="item-data-row__description">Retrieve account and routing numbers for checking and savings accounts.</div>
+                </div>
+                <div class="item-data-row__right">
+                    <button id="get-auth-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                </div>
+                <div class="item-data-row__response">
+                    <table><tbody id="get-auth-data"></tbody></table>
+                </div>
+            </div>
+
+            <!--Transactions -->
+            <div class="item-data-row">
+                <div class="item-data-row__left">
+                    <div class="item-data-row__request-type">post</div>
+                </div>
+                <div class="item-data-row__center">
+                    <div class="item-data-row__nicename">Transactions</div>
+                    <div class="item-data-row__endpoint">/transactions/get</div>
+                    <div class="item-data-row__description">Retrieve transactions for credit and depository accounts.</div>
+                </div>
+                <div class="item-data-row__right">
+                    <button id="get-transactions-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                </div>
+                <div class="item-data-row__response">
+                    <table><tbody id="get-transactions-data"></tbody></table>
+                </div>
+            </div>
+
+            <!-- Identity -->
+            <div class="item-data-row">
+                <div class="item-data-row__left">
+                    <div class="item-data-row__request-type">post</div>
+                </div>
+                <div class="item-data-row__center">
+                    <div class="item-data-row__nicename">Identity</div>
+                    <div class="item-data-row__endpoint">/identity/get</div>
+                    <div class="item-data-row__description">Retrieve Identity information on file with the bank. Reduce fraud by comparing user-submitted data to validate identity.</div>
+                </div>
+                <div class="item-data-row__right">
+                    <button id="get-identity-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                </div>
+                <div class="item-data-row__response">
+                    <table><tbody id="get-identity-data"></tbody></table>
+                </div>
+            </div>
+
+            <!-- Balance -->
+            <div class="item-data-row">
+                <div class="item-data-row__left">
+                    <div class="item-data-row__request-type">post</div>
+                </div>
+                <div class="item-data-row__center">
+                    <div class="item-data-row__nicename">Balance</div>
+                    <div class="item-data-row__endpoint">/accounts/balance/get</div>
+                    <div class="item-data-row__description">Check balances in real time to prevent non-sufficient funds fees.</div>
+                </div>
+                <div class="item-data-row__right">
+                    <button id="get-balance-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                </div>
+                <div class="item-data-row__response">
+                    <table><tbody id="get-balance-data"></tbody></table>
+                </div>
+            </div>
+
+            <!-- Assets (hidden unless 'assets' is included in the product list) -->
+            <div id='assets' class="item-data-row" style='display:none;'>
+                <div class="item-data-row__left">
+                    <div class="item-data-row__request-type">post</div>
+                </div>
+                <div class="item-data-row__center">
+                    <div class="item-data-row__nicename">Assets</div>
+                    <div class="item-data-row__endpoint">/asset_report/*</div>
+                    <div class="item-data-row__description">Create a point-in-time snapshot of a user's assets.</div>
+                </div>
+
+                <div class="item-data-row__right">
+                    <button id="get-assets-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+
+                    <a id="download-assets-pdf-btn" class="button button--is-small button--is-primary button--is-full-width" style="display: none; margin: 10px 0px;";>Download as PDF</a>
+                </div>
+
+                <div class="item-data-row__response">
+                    <table><tbody id="get-assets-data"></tbody></table>
+                </div>
+            </div>
+
+        </div>
+                    <div class="box">
+                        <h3 class="box__heading">Item management</h3>
+                        <div class="item-data-row">
+                        <div class="item-data-row__left">
+                            <div class="item-data-row__request-type">post</div>
+                        </div>
+                        <div class="item-data-row__center">
+                            <div class="item-data-row__endpoint">/item/get</div>
+                            <div class="item-data-row__description">Retrieve information about an Item, like the institution, billed products, available products, and webhook information.</div>
+                        </div>
+
+                        <div class="item-data-row__right">
+                            <button id="get-item-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                        </div>
+                        <div class="item-data-row__response">
+                            <table><tbody id="get-item-data"></tbody></table>
+                        </div>
+                        </div>
+                        <div class="item-data-row">
+                        <div class="item-data-row__left">
+                            <div class="item-data-row__request-type">post</div>
+                        </div>
+                        <div class="item-data-row__center">
+                            <div class="item-data-row__endpoint">/accounts/get</div>
+                            <div class="item-data-row__description">Retrieve high-level information about all accounts associated with an Item.</div>
+                        </div>
+                        <div class="item-data-row__right">
+                            <button id="get-accounts-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
+                        </div>
+                            <div class="item-data-row__response">
+                                <table><tbody id="get-accounts-data"></tbody></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  <!-- <script type="text/javascript" src="bank.js"></script> -->
+</body>
+</html>

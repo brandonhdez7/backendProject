@@ -129,4 +129,9 @@ router.get('/logout',(req, res, next)=>{
   res.redirect('/login?msg=loggedOut')
 })
 
+router.get('/bank', (req, res)=>{
+  res.render('bank',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
