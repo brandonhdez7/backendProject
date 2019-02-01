@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <!-- <link rel="stylesheet" href="https://threads.plaid.com/threads.css"> -->
+    <title>The Budget Hobo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -14,12 +13,11 @@
 
 </head>
   <body>
-    
     <div class="head">
       <div class="header">
         <div class="logo">
             <!-- logo -->
-            <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+            <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
         </div>
         <div class="login">
             <a id="login" href="#">Login</a>
@@ -33,20 +31,20 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
               <!-- Modal content -->
-                <form class="modal-content">
+                <form class="modal-content" action="/registerProcess" method="post">
                   <div class="container1">
                       <span class="close">&times;</span>
                     <h4>Sign Up</h4>
                     <p>Please fill in this form to create an account.</p>
+                    <label for="userName"><b>User Name</b></label>
+                    <input type="text" placeholder="Enter User Name" name="name" required>
+
                     <label for="email"><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="email" required>
               
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" required>
               
-                    <label for="psw-repeat"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-                    
                     <label>
                       <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
                     </label>
@@ -155,7 +153,7 @@
         </div>
 
         <div class="pricing3">
-          <h1>Unlimited Plan</h1>
+          <h1>Premium Plan</h1>
           <div class="pricingNumber">
             <h5>$</h5><h3>18</h3><h5>/Month</h5>
           </div>
