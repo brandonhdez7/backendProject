@@ -69,22 +69,37 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/',(req, res, next)=>{
-  res.render('index.ejs', {
+  res.render('bank.ejs', {
     PLAID_PUBLIC_KEY: PLAID_PUBLIC_KEY,
     PLAID_ENV: PLAID_ENV,
     PLAID_PRODUCTS: PLAID_PRODUCTS,
-    
   });
-  
 });
 
+app.use('*',(req, res, next)=>{
+  console.log(res.locals.name)
+  if(req.session.loggedIn){
+      // res.locals is the variable that gets sent to the view
+      // req.session.name = "someName";
+      res.locals.name = req.session.name;
+      res.locals.id = req.session.id;
+      res.locals.email = req.session.email;
+      res.locals.loggedIn = true;
+  }else{
+      res.locals.name = "null";
+      res.locals.id = "";
+      res.locals.email = "";
+      res.locals.loggedIn = false;
+  }
+  next();
+})
 
 app.post('/get_access_token',(req, res, next)=>{
   PUBLIC_TOKEN = req.body.public_token;
@@ -101,13 +116,18 @@ app.post('/get_access_token',(req, res, next)=>{
     ITEM_ID = tokenResponse.item_id;
       console.log('Access Token: ' + ACCESS_TOKEN);
       console.log('Item ID: ' + ITEM_ID);
-      // res.json({'error': false});
       
       const insertQuery = `INSERT INTO users (id,access)
-        VALUES
+      VALUES
       (DEFAULT,?);`;
-      connection.query(insertQuery,[ACCESS_TOKEN],(error, results)=>{
+      const selectQuery = `SELECT * FROM users`
+      const updateQuery = `UPDATE users SET (access) WHERE userName = ;
+      VALUES
+      (?) `;
+      
+      connection.query(selectQuery,[ACCESS_TOKEN],(error, results)=>{
         if(error) {throw error;}
+        
         // return res.redirect('/dashboard');
       })
 
