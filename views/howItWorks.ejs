@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BudgetHobo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <% include header %>
+
+
+</head>
+<body>
+    <div class="container">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="profileImage">
+            <img id="profileImage1" src="/user_add-512.png">
+            <h3><%= name %></h3>
+            <input id="imageUpload" type="file" 
+                name="profile_photo" placeholder="Photo" required="" capture>
+        </div>
+        <div class="navs">
+            <div class="list">
+                <div class="listIcon">
+                    <span><i class="fas fa-chart-line fa-lg"></i></span>
+                    <span><i class="fas fa-dollar-sign fa-lg"></i></span>
+                    <span><i class="fas fa-users fa-lg"></i></span>
+                    <span><i class="fas fa-piggy-bank fa-lg"></i></span>
+                    <span><i class="fas fa-question-circle fa-lg"></i></span>
+                </div>
+                <div class="listName">
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/budget">Budget</a>
+                    <a href="/profile">Profile</a>
+                    <a href="/bank">Bank</a>
+                    <a href="/howItWorks">How it works</a>
+                </div>
+            </div>
+            <div class="list2">
+                <div class="listIcon2">
+                    <span><i class="fab fa-github fa-lg"></i></span>
+                    <span><i class="fab fa-instagram fa-lg"></i></span>
+                    <span><i class="fab fa-facebook fa-lg"></i></span>
+                </div>
+                <div class="listName2">
+                    <a href="https://github.com/brandonhdez7/backendProject.git" target="_blank">Github</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+            <div class="list3">
+                <div class="listIcon3">
+                    <span><i class="fas fa-briefcase fa-lg"></i></span>
+                    <span><i class="fas fa-handshake fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                </div>
+                <div class="listName3">
+                    <a href="#">Careers</a>
+                    <a href="#">Privacy Agreement</a>
+                    <a href="#">Settings</a>
+                </div>
+            </div>   
+        </div>
+    </div>
+
+<div class="ProfileSettings">
+    <div class="header">
+        <div class="logo">
+        <!-- logo -->
+            <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+        </div>
+        <div class="login">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="welcomeBack">
+        <h3>Howdy <%= name %></h3>
+    </div>
+    <div class="settings">
+        
+            <!-- <div class="container"> -->
+                <div class="jumbotron">
+                    <h1>Welcome to the Budget Hobo!!</h1>
+                    <p>The Budget Hobo allows the user to set up a budget, 
+                       download your bank transactions, and view your budget performance.</p>
+                    
+                    <!-- <div class="container"> -->
+                            <!-- <div class="row"> -->
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    <p>
+                                        <img class="img-responsive" src="/public/images/Screen Shot 2019-02-02 at 8.47.17 PM.png"/>
+                                    </p>
+                                    <ol><strong>Profile</strong> 
+                                        <li>Click on the “Profile” link and the Basic Info
+                                            panel will be displayed.</li>
+                                        <li>Enter your User Name, Email, and password twice</li>
+                                        <li>Click on Save to save or cancel to abort</li>                                
+                                    </ol>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.57 PM.png"/>
+                                    </p>
+                    
+                                    <ol><strong>Monthly Budget Set Up</strong> 
+                                        <li>Enter the amount you want to budget and click on
+                                            "calculate" and your total Balance and Total Budget
+                                            will auto-fill</li>
+                                        <li>As expenses come in, enter or select your 
+                                            expense category</li>
+                                        <li>Enter your expense amount and click on add expense,
+                                            your total expense will increase and your Total Balance
+                                            balance will decrease
+                                        </li>                                
+                                    </ol>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.21 PM.png"/>
+                                    </p>
+                
+                                    <ol><strong>Dashboard</strong>
+                                        <li>Click on the Dashboard and you can connect to your bank, 
+                                            verify your credentials, and download yor transactions</li>
+                                        <li>The dashboard also displays your total incom, expenses,
+                                            and total balance</li> 
+                                        <li>Graphs are available for a graphical view of 
+                                            your spending and budget categories</li>                                                            
+                                    </ol>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.21 PM.png"/>
+                                    </p>
+                
+                                    <ol><strong>Bank Accounts</strong> 
+                                        <li>Click on connect to bank to use your bank credetials to
+                                            log in to your bank</li>
+                                        <li>Connect to your bank and log in</li> 
+                                        <li>Click on download to download your transactions</li>                                                            
+                                    </ol>
+                                </div>
+                                <div class="clearfix visible-md"></div>
+                            <!-- </div> -->
+            <!-- </div> -->
+
+                </div>
+            <!-- </div> -->
+    </div> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
+
+
+

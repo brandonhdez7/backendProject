@@ -1,3 +1,4 @@
+
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -9,6 +10,9 @@ const config = require('./config')
 let envvar = require('envvar');
 let moment = require('moment');
 const expressSession = require('express-session')
+// const localStorage = require('localStorage')
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch');
 
 const mysql = require('mysql')
 let connection = mysql.createConnection(config.db);
@@ -30,27 +34,20 @@ let client = new plaid.Client(
   PLAID_PUBLIC_KEY,
   plaid.environments[PLAID_ENV]
 );
-
-var assert = require('assert')
-  , localStorage = require('localStorage')
-  ;
-
-localStorage.setItem('clients', client)
+localStorage.setItem('clients', JSON.stringify(client))
 var clients = localStorage.getItem('clients')
-// console.log(Number(clients))
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 
 let app = express();
 app.use(express.static('public'));
+app.use(express.static('routes'))
+app.use(express.static('./'))
 let helmet = require('helmet')
 app.use(helmet())
 
 const bcrypt = require('bcrypt-nodejs');
-const expressSession = require('express-session');
-const helmet = require('helmet');
-const config = require('./config');
 
 app.use(helmet());
 const sessionOptions = ({
@@ -59,12 +56,6 @@ const sessionOptions = ({
   saveUninitialized: true,
 })
 app.use(expressSession(sessionOptions));
-
-// Set up MySQL Connection
-const mysql = require('mysql');
-let connection = mysql.createConnection(config.db);
-// we have a connection, lets connect
-connection.connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -79,23 +70,37 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/',(req, res, next)=>{
-  res.render('index.ejs', {
+  res.render('bank.ejs', {
     PLAID_PUBLIC_KEY: PLAID_PUBLIC_KEY,
     PLAID_ENV: PLAID_ENV,
     PLAID_PRODUCTS: PLAID_PRODUCTS,
-    
   });
-  
 });
 
+app.use('*',(req, res, next)=>{
+  console.log(res.locals.name)
+  if(req.session.loggedIn){
+      // res.locals is the variable that gets sent to the view
+      // req.session.name = "someName";
+      res.locals.name = req.session.name;
+      res.locals.id = req.session.id;
+      res.locals.email = req.session.email;
+      res.locals.loggedIn = true;
+  }else{
+      res.locals.name = "null";
+      res.locals.id = "";
+      res.locals.email = "";
+      res.locals.loggedIn = false;
+  }
+  next();
+})
 
 app.post('/get_access_token',(req, res, next)=>{
   PUBLIC_TOKEN = req.body.public_token;
@@ -112,13 +117,18 @@ app.post('/get_access_token',(req, res, next)=>{
     ITEM_ID = tokenResponse.item_id;
       console.log('Access Token: ' + ACCESS_TOKEN);
       console.log('Item ID: ' + ITEM_ID);
-      // res.json({'error': false});
       
-      const insertQuery = `INSERT INTO testing (id,access)
-        VALUES
+      const insertQuery = `INSERT INTO users (id,access)
+      VALUES
       (DEFAULT,?);`;
-      connection.query(insertQuery,[ACCESS_TOKEN],(error, results)=>{
+      const selectQuery = `SELECT * FROM users`
+      const updateQuery = `UPDATE users SET (access) WHERE userName = ;
+      VALUES
+      (?) `;
+      
+      connection.query(selectQuery,[ACCESS_TOKEN],(error, results)=>{
         if(error) {throw error;}
+        
         // return res.redirect('/dashboard');
       })
 
@@ -205,9 +215,6 @@ app.use((err, req, res, next)=>{
   res.render('error');
 });
 
-<<<<<<< HEAD
-module.exports = app;
-=======
 // Define some middleware, if the user is logged in, 
 // then send the user data over to the view
 
@@ -241,4 +248,3 @@ app.get('/',(req,res,next)=>{
 module.exports = app;
 
 
->>>>>>> 794e0979d954d82489b852a8aa61579749d4afaf

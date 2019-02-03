@@ -108,6 +108,7 @@ router.post('/loginProcess',(req,res)=>{
       })
   })
 
+
 router.get('/dashboard', function(req, res) {
   res.render('dashboard',{
     // name: res.locals.name,  
@@ -120,6 +121,7 @@ router.get('/budget', function(req, res) {
     if(error){throw error;}
   });
 });
+
 router.get('/bank', function(req, res) {
   res.render('bank',{
     if(error){throw error;}
@@ -139,6 +141,12 @@ router.get('/logout',(req, res, next)=>{
 
 router.get('/bank', (req, res)=>{
   res.render('bank',{
+    if(error){throw error;}
+  })
+})
+
+router.get('/howItWorks', function (req, res){
+  res.render('howItWorks',{
     if(error){throw error;}
   })
 })
