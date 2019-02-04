@@ -91,7 +91,7 @@ app.post('/get_access_token',(req, res, next)=>{
       error)
       res.json({
         error: msg,
-      })
+      }) 
       return
     } 
     ACCESS_TOKEN = tokenResponse.access_token;
