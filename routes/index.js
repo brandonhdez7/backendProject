@@ -191,6 +191,7 @@ router.post('/loginProcess',(req,res)=>{
 
 
 
+
 router.get('/dashboard', function(req, res) {
   // fakeLogin(req,res).then(()=>{
     res.render('dashboard',{
@@ -252,6 +253,17 @@ router.get('/logout',(req, res, next)=>{
   res.redirect('/login?msg=loggedOut')
 })
 
+router.get('/bank', (req, res)=>{
+  res.render('bank',{
+    if(error){throw error;}
+  })
+})
+
+router.get('/howItWorks', function (req, res){
+  res.render('howItWorks',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
 
 
