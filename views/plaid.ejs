@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Plaid Quickstart Example</title>
+<!-- <link rel="stylesheet" href="https://threads.plaid.com/threads.css"> -->
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<% include header %>
+</head>
+<body>
+    <!-- <main class="container">
+        <% include navbar %>
+        <div class="grid">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-wallet fa-lg"></i><a href="">The Budget Hobo</a>
+                </div>
+                <div class="login">
+                    <a id="/logout" href="#">Logout</a>
+                </div>
+            </div>
+                <div class="welcomeBack">
+                    <h3>Welcome back, <%= name %></h3> 
+                </div>
+            </div>
+        </div>
+    </main> -->
+    <button id="link_btn">Link With Plaid</button>
+    <a href="/dashboard" id="link_btn">go back</a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script src="../bank.js"></script>
+</body>
+</html>

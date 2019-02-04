@@ -22,8 +22,9 @@ body{
 }
 .profileImage{
     display: flex;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-bottom: 5px;
     justify-content: center;
     align-items: center;
     width: 90%;
@@ -42,13 +43,23 @@ body{
     background-color: #d9d9d9;
 }
 .profileImage h3{
-    padding: 10px;
+    padding: 5px;
     color: #d9d9d9;
 }
 /* upload image */
 #imageUpload
 {
-    display: none;
+    /* display: none; */
+}
+.profileImage form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+#imageUpload{
+    padding-left: 150px;
 }
 
 #profileImage
@@ -168,10 +179,10 @@ body{
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100%;
     background-color: #404040;
     align-items: center;
     color:  #d9d9d9;
+    height: max-content;
 }
 .header{
     width: 100%;
@@ -215,9 +226,11 @@ body{
     align-items: center;
     justify-content: space-between;
     height: 200px;
+    background-color: #262626;
 }
 .graph1{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 45%;
@@ -868,6 +881,7 @@ input[type=text], input[type=password] {
       flex-direction: column;
       justify-content: center;
      align-items: center;
+     height: max-content;
   }
   .settings {
     width: 95%;
@@ -896,8 +910,84 @@ input[type=text], input[type=password] {
     color:#d9d9d9;
   }
 
-#app {
-    display: none;
-}
+
+
+  /* how it works */
+  .howItWorks{
+      width: 80%;
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+  }
+    .banner1{
+        width: 95%;
+        background-image: url('website-tips.png');
+        background-size: 100% 100%;
+        height: 325px;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin: 10px 25px 10px 25px;
+        box-shadow: 1px 1px 10px 5px #888888;
+    }
+    .banner1 h1{
+        width: 350px;
+        position: relative;
+        top: 40px;
+        font-size: 40px;
+    } 
+    .worksTitle{
+        width: 95%;
+        background-color: #262626;
+        border-radius: 5px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        flex-direction: column;
+        color: #d9d9d9;
+    }
+    .worksTitle h2{
+        margin: 0px;
+        width: 80%;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    .worksTitle p{
+        padding: 0px;
+        margin: 0px;
+        padding: 5px;
+    }
+    .worksTitle h3{
+        margin: 0px;
+        padding: 10px;
+    }
+    .worksParagraph{
+        width: 95%;
+        background-color: #262626;
+        border-radius: 5px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        height: max-content;
+        flex-direction: column;
+        color: #d9d9d9;
+    }
+    .worksParagraph h3, .worksParagraph h2 {
+        text-align: center;
+        padding: 10px 0px 10px 0px; 
+    }
+    .worksParagraph p{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 100px;
+    }
+
+
+
+
+
 
 

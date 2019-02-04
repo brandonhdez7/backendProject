@@ -13,62 +13,11 @@
 <body>
     <div class="container">
         <!-- navbar -->
-            <div class="navbar">
-                <div class="profileImage">
-                    <img id="profileImage1" src="user_add-512.png">
-                    <h3><%= name %></h3>
-                    <input id="imageUpload" type="file" 
-                                name="profile_photo" placeholder="Photo" required="" capture>
-                </div>
-                <div class="navs">
-                    <div class="list">
-                        <div class="listIcon">
-                                <span><i class="fas fa-chart-line fa-lg"></i></span>
-                                <span><i class="fas fa-dollar-sign fa-lg"></i></span>
-                                <span><i class="fas fa-users fa-lg"></i></span>
-                                <span><i class="fas fa-piggy-bank fa-lg"></i></span>
-                                <span><i class="fas fa-question-circle fa-lg"></i></span>
-                        </div>
-                        <div class="listName">
 
-                            <a href="/dashboard">Dashboard</a>
-                            <a href="/budget">Budget</a>
-                            <a href="/profile">Profile</a>
-                            <a href="/bank">Bank</a>
-                            <a href="#">How it works</a>
-                        </div>
-                    </div>
-                    <div class="list2">
-                            <div class="listIcon2">
-                                    <span><i class="fab fa-github fa-lg"></i></span>
-                                    <span><i class="fab fa-instagram fa-lg"></i></span>
-                                    <span><i class="fab fa-facebook fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName2">
-    
-                                <a href="https://github.com/brandonhdez7/backendProject.git" target="_blank">Github</a>
-                                <a href="#">Instagram</a>
-                                <a href="#">Facebook</a>
-                            </div>
-                        </div>
-                        <div class="list3">
-                            <div class="listIcon3">
-                                    <span><i class="fas fa-briefcase fa-lg"></i></span>
-                                    <span><i class="fas fa-handshake fa-lg"></i></span>
-                                    <span><i class="fas fa-cog fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName3">
-    
-                                <a href="#">Careers</a>
-                                <a href="#">Privacy Agreement</a>
-                                <a href="#">Settings</a>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        <div class="budget">
+
+        <% include navbar %>
+            
+         <div class="budget">
             <div class="header">
                     <div class="logo">
                         <!-- logo -->
@@ -79,27 +28,27 @@
                     </div>
             </div>
             <div class="welcomeBack">
-                <h3>Hello <%= name %>></h3>
+                <h3>Hello <%= name %></h3>
             </div>
 
 
             <div class="budgetDisplay">
                 <div class="budgetSubmit">
-                    <form id="budget-form" class="budget-form">
+                    <form id="budget-form" class="budget-form" action="/formBudget">
                             <div class="budget-feedback">budget feedback</div>
                         <h1 class="budgetText">Enter your budget</h1>
-                        <input type="number" id="budget-input">
+                        <input type="number" id="budget-input" name="budget-input">
                         <button type="submit" class="budgetButton" id="budget-submit">calculate</button>
                     </form>
-                    <form id="expense-form" class="expense-form">
+                    <form id="expense-form" class="expense-form" action="/formBudget">
                         <div class="expense1">
                                 <div class="budget-feedback">budget feedback</div>
                             <h1 class="budgetText">Enter your expense</h1>
-                            <input type="text" class="enterExpense" id="expense-input">
+                            <input type="text" class="enterExpense" id="expense-input" name="expense-input">
                         </div>
                         <div class="expense2"> 
                             <h1 class="budgetTitle">Enter expense amount</h1>
-                            <input type="number" id="amount-input">
+                            <input type="number" id="amount-input" name="amount-input">
                             <button type="submit" class="budgetButton" id="expense-submit">add expense</button>
                         </div>
                     </form>
@@ -163,5 +112,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
         <script src="budget.js"></script>
+        <script src="/api.js"></script>
     </body>
     </html>

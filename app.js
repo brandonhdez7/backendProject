@@ -9,9 +9,8 @@ const config = require('./config')
 let envvar = require('envvar');
 let moment = require('moment');
 const expressSession = require('express-session')
-// const localStorage = require('localStorage')
-var LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+// let bank = require('./views/bank.ejs')
+// app.use('/bank', bank)
 
 const mysql = require('mysql')
 let connection = mysql.createConnection(config.db);
@@ -33,8 +32,6 @@ let client = new plaid.Client(
   PLAID_PUBLIC_KEY,
   plaid.environments[PLAID_ENV]
 );
-localStorage.setItem('clients', JSON.stringify(client))
-var clients = localStorage.getItem('clients')
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
@@ -46,6 +43,8 @@ app.use(express.static('./'))
 let helmet = require('helmet')
 app.use(helmet())
 
+// const multer = require('multer');
+// const upload = multer({ dest: 'public/' })
 const bcrypt = require('bcrypt-nodejs');
 
 app.use(helmet());
@@ -69,22 +68,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/',(req, res, next)=>{
-  res.render('index.ejs', {
+  res.render('bank.ejs', {
     PLAID_PUBLIC_KEY: PLAID_PUBLIC_KEY,
     PLAID_ENV: PLAID_ENV,
     PLAID_PRODUCTS: PLAID_PRODUCTS,
-    
   });
-  
 });
-
 
 app.post('/get_access_token',(req, res, next)=>{
   PUBLIC_TOKEN = req.body.public_token;
@@ -101,83 +97,63 @@ app.post('/get_access_token',(req, res, next)=>{
     ITEM_ID = tokenResponse.item_id;
       console.log('Access Token: ' + ACCESS_TOKEN);
       console.log('Item ID: ' + ITEM_ID);
-      // res.json({'error': false});
-      
-      const insertQuery = `INSERT INTO users (id,access)
-        VALUES
-      (DEFAULT,?);`;
-      connection.query(insertQuery,[ACCESS_TOKEN],(error, results)=>{
+      const name = res.locals.name
+      const updateQuery = `UPDATE users SET access = '${ACCESS_TOKEN}' WHERE userName LIKE '${name}';`;
+      res.redirect('/bank')
+      connection.query(updateQuery,(error, results)=>{
         if(error) {throw error;}
-        // return res.redirect('/dashboard');
+        // window.location.reload()
+        // api()
+        res.redirect('/bank')
       })
-
-    //   client.getAuth(ACCESS_TOKEN, {}, (err, results) => {
-    //   // Handle err
-    //     var accountData = results.accounts;
-    //     accountData.forEach((data)=>{
-    //       // console.log(data.name)
-    //     })
-    //   if (results.numbers.ach.length > 0) {
-    //   // Handle ACH numbers (US accounts)
-    //     var achNumbers = results.numbers.ach;
-    //     // console.log(achNumbers)
-    // } else if (results.numbers.eft.length > 0) {
-    //   // Handle EFT numbers (Canadian accounts)
-    //     var eftNumbers = results.numbers.eft;
-    //     // console.log(eftNumbers)
-    //   }
-    // });
-    // var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-    // var endDate = moment().format('YYYY-MM-DD');
-    // client.getTransactions(ACCESS_TOKEN, startDate, endDate, {
-    //   count: 250,
-    //   offset: 0,
-    // }, (err, results)=>{
-    //   const transactions = results.transactions;
-    //   // console.log(transactions)
-    // });
-    // client.getBalance(ACCESS_TOKEN, (err, result)=>{
-    //   const accounts = result.accounts;
-    //   console.log(accounts)
-    // })
-  });  
+    });  
+    // res.end()
 });
-// $('#get-auth-btn').click(()=>{
-//   console.log('hello')
-//   client.getAuth(ACCESS_TOKEN, {}, (err, results) => {
-//       // Handle err
-//         var accountData = results.accounts;
-//         accountData.forEach((data)=>{
-//           console.log(data.name)
-//         })
-//       if (results.numbers.ach.length > 0) {
-//       // Handle ACH numbers (US accounts)
-//         var achNumbers = results.numbers.ach;
-//         console.log(achNumbers)
-//     } else if (results.numbers.eft.length > 0) {
-//       // Handle EFT numbers (Canadian accounts)
-//         var eftNumbers = results.numbers.eft;
-//         console.log(eftNumbers)
-//       }
-//   });
-// })  
-// $('#get-transactions-btn').click(()=>{
-//   var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-//   var endDate = moment().format('YYYY-MM-DD');
-//   client.getTransactions(ACCESS_TOKEN, startDate, endDate, {
-//     count: 250,
-//     offset: 0,
-//   }, (err, results)=>{
-//     const transactions = results.transactions;
-//     // console.log(transactions)
-//   })
-// });
-// $('#get-balance-data').click(()=>{
-//   client.getBalance(ACCESS_TOKEN, (err, result)=>{
-//     const accounts = result.accounts;
-//     console.log(accounts)
-//   })
-// })
+
+                                    
+app.get('/auth', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  connection.query(selectQuery, (err, data)=>{
+    client.getAuth(data[0].access, {}, (error, results) => {
+      res.json({
+        error: null,
+        auth: results
+      })
+    })
+  })
+})
+ 
+app.get('/transactions', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
+  var endDate = moment().format('YYYY-MM-DD');
+  connection.query(selectQuery, (err, data)=>{
+    client.getTransactions(data[0].access, startDate, endDate, {
+      count: 250,
+      offset: 0,
+    }, (err, results)=>{
+      res.json({
+        error: null, 
+        transactions: results
+      })
+    })
+  })
+})
+
+app.get('/balance', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  connection.query(selectQuery, (err, data)=>{
+    client.getBalance(data[0].access, (error, balResponse)=>{
+      res.json({
+        error: null,
+        balance: balResponse
+      })
+    })
+  })
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -217,12 +193,40 @@ app.use('*',(req, res, next)=>{
 app.get('/',(req,res,next)=>{
   console.log('on the homepage');
   res.render('/');
-  // res.redirect('index.ejs',{});
+
 })
 
+// app.post('/formSubmit',upload.single('profile_photo'),(req, res)=>{
+  
+//   const tmpPath = req.file.path;
+  
+//   const targetPath = `public/${req.file.originalname}`
+  
+//   fs.readFile(tmpPath,(error,fileContents)=>{
+//       if(error){throw error};
+     
+//       fs.writeFile(targetPath,fileContents,(error2)=>{
+//           if(error2){throw error2};
+         
+//           const insertQuery = `INSERT INTO users (id,userName,imageProfile)
+//               VALUES
+//           (DEFAULT,?,?);`;
+//           connection.query(
+//               insertQuery,
+//               [req.body.imageProfile,req.file.originalname],
+//               (dbError,dbResults)=>
+//           {
+//               if(dbError){
+//                   throw dbError;
+//               }else{
+//                   fs.unlink(tmpPath);
+//                   res.redirect('dashboard');
+//               }
+//           })
+//       });
+//   });
+ 
 
+// });
 
-
-module.exports = app;
-
-
+module.exports = app

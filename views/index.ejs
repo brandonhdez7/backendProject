@@ -20,7 +20,7 @@
             <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
         </div>
         <div class="login">
-            <a id="login" href="/login">Login</a>
+            <a href="/login">Login</a>
         </div>
       </div>
       <div class="loginPage">
@@ -40,10 +40,10 @@
                     <input type="text" placeholder="Enter User Name" name="name" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                    <input type="text" autocomplete="username" placeholder="Enter Email" name="email" required>
               
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <input type="password" autocomplete="new-password" placeholder="Enter Password" name="psw" required>
               
                     <label>
                       <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -181,47 +181,6 @@
     <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
   <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
-  <script>
-    (function($){
-      // console.log(PLAID_PRODUCTS)
-      let products = ('PLAID_PRODUCTS', 'transactions').split(',');
-
-
-      var handler = Plaid.create({
-        apiVersion: 'v2',
-        clientName: 'The Budget Hobo',
-        env: 'sandbox',
-        product: products,
-        key: '6131daca2965f9a28481697d1aa0d4',
-        onSuccess: (public_token)=>{
-          $.post('/get_access_token', {
-            public_token: public_token
-          }),
-          (data)=> {
-            $('.head').fadeOut('fast', ()=>{
-
-            })
-          }
-        }
-      })
-      var accessToken = qs('access_token');
-      if (accessToken != null && accessToken != '') {
-        $.post('/set_access_token', {
-          access_token: accessToken
-        }, (data)=>{
-  
-        });
-      }
-      // $('.login').on('click', function(e) {
-      // handler.open();
-      // });
-    })(jQuery)
-    function qs(key) {
-    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
-    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
-    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-    }
-  </script>
   </body>
 </html>
 
