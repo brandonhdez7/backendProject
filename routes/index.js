@@ -181,7 +181,6 @@ router.post('/loginProcess',(req,res)=>{
                   req.session.loggedIn = true;
                   // response is set, HTTP disconnects, we are done
                   
-                  res.redirect('/dashboard?msg=loginSuccess');
 
                   req.session.profileImage = results[0].imageProfile
                   res.redirect('/dashboard?msg=loginSuccess');
