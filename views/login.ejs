@@ -5,36 +5,40 @@
 	<%include header%>
 </head>
 <body>
-    <div class="logo">
-        <!-- logo -->
-        <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
+    <div class="logoOne">
+            <!-- logo -->
+            <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
     </div>
+    <div class="login1">
 
-    <h1>Login Page</h1>
+        
 
-    <!-- The Modal -->
-    <div id="myModal1" class="modal1">
-        <!-- Modal content -->
-    <form class="modal-content1" action="/loginProcess" method="post">
-        <div class="containerLogin">
-            <h4>Login</h4>
-            <p>Please fill in this form to create an account.</p>
-            <label for="email"><b>Email</b></label>
-            <input type="text" autocomplete="username" placeholder="Enter Email" name="email"  required>
+        <!-- The Modal -->
+        <div id="myModal1" class="modal2">
+            <!-- Modal content -->
+        <form class="modal-content2" action="/loginProcess" method="post">
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" autocomplete="current-password" placeholder="Enter Password" name="psw" required>
+            <div class="containerLogin">
 
-            <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-            </label>
-                
-            <div class="clearfix">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Login</button>
+                <h4>Login</h4>
+                <p>Please fill in this form to create an account.</p>
+                <label for="email"><b>Email</b></label>
+                <input type="text" autocomplete="username" placeholder="Enter Email" name="email"  required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" autocomplete="current-password" placeholder="Enter Password" name="psw" required>
+
+                <label>
+                <input type="checkbox" class="rememberMe" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                </label>
+                    
+                <div class="clearfix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn">Login</button>
+                </div>
             </div>
+        </form>
         </div>
-    </form>
     </div>
 
 </body>

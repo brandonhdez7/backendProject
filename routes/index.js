@@ -205,8 +205,7 @@ router.get('/budget', function(req, res) {
 router.get('/bank', function(req, res) {
   const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
   connection.query(selectQuery,(error, data)=>{
-    console.log(data)
-    // console.log(data[0].access)
+    console.log(data[0].access)
     if (data[0].access != null){
       res.render('bank',{
         if(error){throw error;}

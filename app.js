@@ -86,12 +86,13 @@ app.get('/',(req, res, next)=>{
 app.post('/get_access_token',(req, res, next)=>{
   PUBLIC_TOKEN = req.body.public_token;
   client.exchangePublicToken(PUBLIC_TOKEN,(error, tokenResponse)=>{
+    console.log(error)
     if (error != null) {
       console.log('Could not exchange public_token!' + '\n' + 
       error)
       res.json({
         error: msg,
-      })
+      }) 
       return
     } 
     ACCESS_TOKEN = tokenResponse.access_token;
@@ -124,7 +125,9 @@ app.get('/auth', (req, res)=>{
     })
   })
 })
- 
+
+// `SELECT * FROM users WHERE userName LIKE '${res.locals.name}'`
+
 app.get('/transactions', (req, res)=>{
   name = res.locals.name
   const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;

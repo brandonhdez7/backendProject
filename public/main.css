@@ -913,7 +913,7 @@ input[type=text], input[type=password] {
 
 
 .jumbotron {
-    margin-bottom: -60px;
+    margin-bottom: auto;
 }
 
   /* how it works */
@@ -988,6 +988,56 @@ input[type=text], input[type=password] {
         align-items: flex-start;
         margin-left: 100px;
     }
+
+/* login */
+.login1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal2{
+    width: 70%;
+    
+}
+.containerLogin{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    background-color: #262626;
+    padding-left: 40px;
+}
+.containerLogin input{
+    width: 60%;
+}
+.logoOne{
+    padding-top: 10px;
+    padding-left: 40px;
+}
+.logoOne i{
+    color: #00cc99;
+    padding-right: 10px;
+}
+
+ .logoOne a{
+    color: #d9d9d9;
+    text-decoration: none; 
+}
+.containerLogin button{
+    border-radius: 5px;
+    background-color: #00cc99;
+    border: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0px 30px 0px;
+    padding: 10px;
+  }
+  .containerLogin .rememberMe{
+      width: 1%;
+  }
 
 
 
