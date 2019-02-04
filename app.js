@@ -177,7 +177,6 @@ app.use('*',(req, res, next)=>{
   console.log("Middleware is working! from app.js");
   if(req.session.loggedIn){
       // res.locals is the variable that gets sent to the view
-      req.session.name = "someName";
       res.locals.name = req.session.name;
       res.locals.id = req.session.id;
       res.locals.email = req.session.email;
