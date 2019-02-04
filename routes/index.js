@@ -205,7 +205,6 @@ router.get('/budget', function(req, res) {
 });
 
 router.get('/bank', function(req, res) {
-  console.log('in bank route')
   const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
   connection.query(selectQuery,(error, data)=>{
     console.log(data[0].access)
@@ -264,6 +263,12 @@ router.get('/howItWorks', function (req, res){
     if(error){throw error;}
   })
 })
+
+router.get('/privacyStatement', function (req, res){
+  res.render('privacyStatement',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
 
 
@@ -283,3 +288,9 @@ module.exports = router;
 //     })
 //   })
 // }
+
+router.get('/careers', function(req, res) {
+  res.render('careers',{
+    if(error){throw error;}
+  });
+});
