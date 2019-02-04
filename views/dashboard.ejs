@@ -3,11 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<<<<<<< HEAD
-    <title>BudgetHobo</title>
-=======
     <title>DashBoard</title>
->>>>>>> master
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -15,62 +11,12 @@
     <% include header %>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <!-- navbar -->
-            <div class="navbar">
-                <div class="profileImage">
-                    <img id="profileImage1" src="<%= profileImage %>">
-                    <h3><%= name %></h3>
-                 
-                </div>
-                <div class="navs">
-                    <div class="list">
-                        <div class="listIcon">
-                                <span><i class="fas fa-chart-line fa-lg"></i></span>
-                                <span><i class="fas fa-dollar-sign fa-lg"></i></span>
-                                <span><i class="fas fa-users fa-lg"></i></span>
-                                <span><i class="fas fa-piggy-bank fa-lg"></i></span>
-                                <span><i class="fas fa-question-circle fa-lg"></i></span>
-                        </div>
-                        <div class="listName">
 
-                            <a href="/dashboard">Dashboard</a>
-                            <a href="/budget">Budget</a>
-                            <a href="/profile">Profile</a>
-                            <a href="/bank">Bank</a>
-                            <a href="/howItWorks">How it works</a>
-                        </div>
-                    </div>
-                    <div class="list2">
-                            <div class="listIcon2">
-                                    <span><i class="fab fa-github fa-lg"></i></span>
-                                    <span><i class="fab fa-instagram fa-lg"></i></span>
-                                    <span><i class="fab fa-facebook fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName2">
-    
-                                <a href="https://github.com/brandonhdez7/backendProject.git" target="_blank">Github</a>
-                                <a href="#">Instagram</a>
-                                <a href="#">Facebook</a>
-                            </div>
-                        </div>
-                        <div class="list3">
-                            <div class="listIcon3">
-                                    <span><i class="fas fa-briefcase fa-lg"></i></span>
-                                    <span><i class="fas fa-handshake fa-lg"></i></span>
-                                    <span><i class="fas fa-cog fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName3">
-                                <a href="#">Careers</a>
-                                <a href="#">Privacy Agreement</a>
-                                <a href="#">Settings</a>
-                            </div>
-                        </div>
-                </div>
-            </div>
+            <% include navbar %>
 
+            
             <!-- board -->
             <div class="board">
                 <div class="header">
@@ -86,6 +32,7 @@
                 <div class="welcomeBack">
                     <h3>Welcome back, <%= name %></h3> 
                 </div>
+                <!-- <div class="graphContainer"> -->
                 <div class="graphRow1">
                     <div class="graph1" style="height: 175px" style="width: 175px">
                         <canvas id="myChart"></canvas>
@@ -95,6 +42,7 @@
                     </div>
 
                 </div>
+                <!-- </div> -->
                 <div class="graphRow2">
                     <div class="graph3">
                         <h1>Total Income</h1>
@@ -179,9 +127,13 @@
                     </div>
                 </div>
             </div>
-    </div> 
+        </main> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <script src="/main.js"></script>
+    <script src="./bank.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>

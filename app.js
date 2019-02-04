@@ -9,9 +9,8 @@ const config = require('./config')
 let envvar = require('envvar');
 let moment = require('moment');
 const expressSession = require('express-session')
-// const localStorage = require('localStorage')
-var LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+// let bank = require('./views/bank.ejs')
+// app.use('/bank', bank)
 
 const mysql = require('mysql')
 let connection = mysql.createConnection(config.db);
@@ -33,8 +32,6 @@ let client = new plaid.Client(
   PLAID_PUBLIC_KEY,
   plaid.environments[PLAID_ENV]
 );
-localStorage.setItem('clients', JSON.stringify(client))
-var clients = localStorage.getItem('clients')
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
@@ -85,24 +82,6 @@ app.get('/',(req, res, next)=>{
   });
 });
 
-app.use('*',(req, res, next)=>{
-  console.log(res.locals.name)
-  if(req.session.loggedIn){
-      // res.locals is the variable that gets sent to the view
-      // req.session.name = "someName";
-      res.locals.name = req.session.name;
-      res.locals.id = req.session.id;
-      res.locals.email = req.session.email;
-      res.locals.loggedIn = true;
-  }else{
-      res.locals.name = "null";
-      res.locals.id = "";
-      res.locals.email = "";
-      res.locals.loggedIn = false;
-  }
-  next();
-})
-
 app.post('/get_access_token',(req, res, next)=>{
   PUBLIC_TOKEN = req.body.public_token;
   client.exchangePublicToken(PUBLIC_TOKEN,(error, tokenResponse)=>{
@@ -118,88 +97,63 @@ app.post('/get_access_token',(req, res, next)=>{
     ITEM_ID = tokenResponse.item_id;
       console.log('Access Token: ' + ACCESS_TOKEN);
       console.log('Item ID: ' + ITEM_ID);
-      
-      const insertQuery = `INSERT INTO users (id,access)
-      VALUES
-      (DEFAULT,?);`;
-      const selectQuery = `SELECT * FROM users`
-      const updateQuery = `UPDATE users SET (access) WHERE userName = ;
-      VALUES
-      (?) `;
-      
-      connection.query(selectQuery,[ACCESS_TOKEN],(error, results)=>{
+      const name = res.locals.name
+      const updateQuery = `UPDATE users SET access = '${ACCESS_TOKEN}' WHERE userName LIKE '${name}';`;
+      res.redirect('/bank')
+      connection.query(updateQuery,(error, results)=>{
         if(error) {throw error;}
-        
-        // return res.redirect('/dashboard');
+        // window.location.reload()
+        // api()
+        res.redirect('/bank')
       })
-
-    //   client.getAuth(ACCESS_TOKEN, {}, (err, results) => {
-    //   // Handle err
-    //     var accountData = results.accounts;
-    //     accountData.forEach((data)=>{
-    //       // console.log(data.name)
-    //     })
-    //   if (results.numbers.ach.length > 0) {
-    //   // Handle ACH numbers (US accounts)
-    //     var achNumbers = results.numbers.ach;
-    //     // console.log(achNumbers)
-    // } else if (results.numbers.eft.length > 0) {
-    //   // Handle EFT numbers (Canadian accounts)
-    //     var eftNumbers = results.numbers.eft;
-    //     // console.log(eftNumbers)
-    //   }
-    // });
-    // var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-    // var endDate = moment().format('YYYY-MM-DD');
-    // client.getTransactions(ACCESS_TOKEN, startDate, endDate, {
-    //   count: 250,
-    //   offset: 0,
-    // }, (err, results)=>{
-    //   const transactions = results.transactions;
-    //   // console.log(transactions)
-    // });
-    // client.getBalance(ACCESS_TOKEN, (err, result)=>{
-    //   const accounts = result.accounts;
-    //   console.log(accounts)
-    // })
-  });  
+    });  
+    // res.end()
 });
-// $('#get-auth-btn').click(()=>{
-//   console.log('hello')
-//   client.getAuth(ACCESS_TOKEN, {}, (err, results) => {
-//       // Handle err
-//         var accountData = results.accounts;
-//         accountData.forEach((data)=>{
-//           console.log(data.name)
-//         })
-//       if (results.numbers.ach.length > 0) {
-//       // Handle ACH numbers (US accounts)
-//         var achNumbers = results.numbers.ach;
-//         console.log(achNumbers)
-//     } else if (results.numbers.eft.length > 0) {
-//       // Handle EFT numbers (Canadian accounts)
-//         var eftNumbers = results.numbers.eft;
-//         console.log(eftNumbers)
-//       }
-//   });
-// })  
-// $('#get-transactions-btn').click(()=>{
-//   var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-//   var endDate = moment().format('YYYY-MM-DD');
-//   client.getTransactions(ACCESS_TOKEN, startDate, endDate, {
-//     count: 250,
-//     offset: 0,
-//   }, (err, results)=>{
-//     const transactions = results.transactions;
-//     // console.log(transactions)
-//   })
-// });
-// $('#get-balance-data').click(()=>{
-//   client.getBalance(ACCESS_TOKEN, (err, result)=>{
-//     const accounts = result.accounts;
-//     console.log(accounts)
-//   })
-// })
+
+                                    
+app.get('/auth', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  connection.query(selectQuery, (err, data)=>{
+    client.getAuth(data[0].access, {}, (error, results) => {
+      res.json({
+        error: null,
+        auth: results
+      })
+    })
+  })
+})
+ 
+app.get('/transactions', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
+  var endDate = moment().format('YYYY-MM-DD');
+  connection.query(selectQuery, (err, data)=>{
+    client.getTransactions(data[0].access, startDate, endDate, {
+      count: 250,
+      offset: 0,
+    }, (err, results)=>{
+      res.json({
+        error: null, 
+        transactions: results
+      })
+    })
+  })
+})
+
+app.get('/balance', (req, res)=>{
+  name = res.locals.name
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${name}';`;
+  connection.query(selectQuery, (err, data)=>{
+    client.getBalance(data[0].access, (error, balResponse)=>{
+      res.json({
+        error: null,
+        balance: balResponse
+      })
+    })
+  })
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -276,7 +230,4 @@ app.get('/',(req,res,next)=>{
 
 // });
 
-
-module.exports = app;
-
-
+module.exports = app
