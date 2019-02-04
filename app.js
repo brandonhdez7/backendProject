@@ -43,6 +43,8 @@ app.use(express.static('./'))
 let helmet = require('helmet')
 app.use(helmet())
 
+// const multer = require('multer');
+// const upload = multer({ dest: 'public/' })
 const bcrypt = require('bcrypt-nodejs');
 
 app.use(helmet());
@@ -192,9 +194,40 @@ app.use('*',(req, res, next)=>{
 app.get('/',(req,res,next)=>{
   console.log('on the homepage');
   res.render('/');
-  // res.redirect('index.ejs',{});
+
 })
 
+// app.post('/formSubmit',upload.single('profile_photo'),(req, res)=>{
+  
+//   const tmpPath = req.file.path;
+  
+//   const targetPath = `public/${req.file.originalname}`
+  
+//   fs.readFile(tmpPath,(error,fileContents)=>{
+//       if(error){throw error};
+     
+//       fs.writeFile(targetPath,fileContents,(error2)=>{
+//           if(error2){throw error2};
+         
+//           const insertQuery = `INSERT INTO users (id,userName,imageProfile)
+//               VALUES
+//           (DEFAULT,?,?);`;
+//           connection.query(
+//               insertQuery,
+//               [req.body.imageProfile,req.file.originalname],
+//               (dbError,dbResults)=>
+//           {
+//               if(dbError){
+//                   throw dbError;
+//               }else{
+//                   fs.unlink(tmpPath);
+//                   res.redirect('dashboard');
+//               }
+//           })
+//       });
+//   });
+ 
 
+// });
 
 module.exports = app

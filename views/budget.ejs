@@ -13,7 +13,9 @@
 <body>
     <div class="container">
         <!-- navbar -->
+
         <% include navbar %>
+            
         <div class="budget">
             <div class="header">
                     <div class="logo">
@@ -31,21 +33,21 @@
 
             <div class="budgetDisplay">
                 <div class="budgetSubmit">
-                    <form id="budget-form" class="budget-form">
+                    <form id="budget-form" class="budget-form" action="/formBudget">
                             <div class="budget-feedback">budget feedback</div>
                         <h1 class="budgetText">Enter your budget</h1>
-                        <input type="number" id="budget-input">
+                        <input type="number" id="budget-input" name="budget-input">
                         <button type="submit" class="budgetButton" id="budget-submit">calculate</button>
                     </form>
-                    <form id="expense-form" class="expense-form">
+                    <form id="expense-form" class="expense-form" action="/formBudget">
                         <div class="expense1">
                                 <div class="budget-feedback">budget feedback</div>
                             <h1 class="budgetText">Enter your expense</h1>
-                            <input type="text" class="enterExpense" id="expense-input">
+                            <input type="text" class="enterExpense" id="expense-input" name="expense-input">
                         </div>
                         <div class="expense2"> 
                             <h1 class="budgetTitle">Enter expense amount</h1>
-                            <input type="number" id="amount-input">
+                            <input type="number" id="amount-input" name="amount-input">
                             <button type="submit" class="budgetButton" id="expense-submit">add expense</button>
                         </div>
                     </form>
