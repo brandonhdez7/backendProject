@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt-nodejs');
 const expressSession = require('express-session');
 
 const multer = require('multer');
+
 const upload = multer({ dest: 'public/' })
+
 const mysql = require('mysql');
 const config = require('../config');
 const connection = mysql.createConnection(config.db);
@@ -44,35 +46,26 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/registerProcess',(req,res)=>{
-  // const hashedPass = bcrypt.hashSync(req.body.password);
-  // // Before we insert a new user into the users table, we need
-  // // to make sure this email isn't already in the db
-  // const checkUserQuery = `SELECT * FROM users WHERE email = ?`;
-  // connection.query(checkUserQuery,[req.body.email],(error,results)=>{
-  //   if(error){throw error;}
-  //   if(results.length != 0){
-  //     // our query returned a row, that means this email is already registered
-  //     res.render('/register?msg=register');
-  //   }else{
-  //     // this is a new user! Insert them!
-  //     const insertUserQuery = `INSERT INTO users (name, email, hash)
-  //       VALUES
-  //       (?,?,?)`;
-  //     connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
-  //         if(error2){throw error2;}
-  //       })
-  //     }
-  //   })
-  // res.json(req.body);
   const hashedPass = bcrypt.hashSync(req.body.psw);
-  const insertUserQuery = `INSERT INTO users (id,userName, userEmail, password)
-    VALUES
-    (DEFAULT,?,?,?)`;
-  connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass], (error, results)=>{
+  // Before we insert a new user into the users table, we need
+  // to make sure this email isn't already in the db
+  const checkUserQuery = `SELECT * FROM users WHERE userEmail = ?`;
+  connection.query(checkUserQuery,[req.body.email],(error,results)=>{
     if(error){throw error;}
-    res.redirect('/');
-  })
-  
+    if(results.length != 0){
+      // our query returned a row, that means this email is already registered
+      res.redirect('/?msg=register');
+    }else{
+      // this is a new user! Insert them!
+      const insertUserQuery = `INSERT INTO users (userName, userEmail, password)
+        VALUES
+        (?,?,?)`;
+      connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
+          if(error2){throw error2;}
+          res.redirect('/');
+        })
+      }
+    })
 })
 
 router.get('/login', function(req, res) {
@@ -179,16 +172,18 @@ router.post('/loginProcess',(req,res)=>{
                   // req.session.id = results[0].id;
                   req.session.uid = results[0].id;
                   req.session.loggedIn = true;
+
                   // response is set, HTTP disconnects, we are done
                   
-
-                  req.session.profileImage = results[0].imageProfile
                   res.redirect('/dashboard?msg=loginSuccess');
+                  req.session.profileImage = results[0].imageProfile
+                  // res.redirect('/dashboard?msg=loginSuccess');
                   // response is set, HTTP disconnects, we are done
               }        
           }
       })
 })
+
 
 
 
@@ -253,6 +248,17 @@ router.get('/logout',(req, res, next)=>{
   res.redirect('/login?msg=loggedOut')
 })
 
+router.get('/bank', (req, res)=>{
+  res.render('bank',{
+    if(error){throw error;}
+  })
+})
+
+router.get('/howItWorks', function (req, res){
+  res.render('howItWorks',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
 
 

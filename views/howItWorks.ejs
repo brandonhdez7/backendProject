@@ -3,143 +3,164 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>how It Works</title>
+    <title>BudgetHobo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <% include header %>
+
+
 </head>
 <body>
     <div class="container">
-        <!-- navbar -->
-            <div class="navbar">
-                <div class="profileImage">
-                    <img id="profileImage1" src="<%= profileImage %>">
-                    <h3><%= name %></h3>
-                 
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="profileImage">
+            <img id="profileImage1" src="/user_add-512.png">
+            <h3><%= name %></h3>
+            <input id="imageUpload" type="file" 
+                name="profile_photo" placeholder="Photo" required="" capture>
+        </div>
+        <div class="navs">
+            <div class="list">
+                <div class="listIcon">
+                    <span><i class="fas fa-chart-line fa-lg"></i></span>
+                    <span><i class="fas fa-dollar-sign fa-lg"></i></span>
+                    <span><i class="fas fa-users fa-lg"></i></span>
+                    <span><i class="fas fa-piggy-bank fa-lg"></i></span>
+                    <span><i class="fas fa-question-circle fa-lg"></i></span>
                 </div>
-                <div class="navs">
-                    <div class="list">
-                        <div class="listIcon">
-                                <span><i class="fas fa-chart-line fa-lg"></i></span>
-                                <span><i class="fas fa-dollar-sign fa-lg"></i></span>
-                                <span><i class="fas fa-users fa-lg"></i></span>
-                                <span><i class="fas fa-piggy-bank fa-lg"></i></span>
-                                <span><i class="fas fa-question-circle fa-lg"></i></span>
-                        </div>
-                        <div class="listName">
-
-                            <a href="/dashboard">Dashboard</a>
-                            <a href="/budget">Budget</a>
-                            <a href="/profile">Profile</a>
-                            <a href="/bank">Bank</a>
-                            <a href="/howItWorks">How it works</a>
-                        </div>
-                    </div>
-                    <div class="list2">
-                            <div class="listIcon2">
-                                    <span><i class="fab fa-github fa-lg"></i></span>
-                                    <span><i class="fab fa-instagram fa-lg"></i></span>
-                                    <span><i class="fab fa-facebook fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName2">
-    
-                                <a href="https://github.com/brandonhdez7/backendProject.git" target="_blank">Github</a>
-                                <a href="#">Instagram</a>
-                                <a href="#">Facebook</a>
-                            </div>
-                        </div>
-                        <div class="list3">
-                            <div class="listIcon3">
-                                    <span><i class="fas fa-briefcase fa-lg"></i></span>
-                                    <span><i class="fas fa-handshake fa-lg"></i></span>
-                                    <span><i class="fas fa-cog fa-lg"></i></span>
-    
-                            </div>
-                            <div class="listName3">
-                                <a href="#">Careers</a>
-                                <a href="#">Privacy Agreement</a>
-                                <a href="#">Settings</a>
-                            </div>
-                        </div>
+                <div class="listName">
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/budget">Budget</a>
+                    <a href="/profile">Profile</a>
+                    <a href="/bank">Bank</a>
+                    <a href="/howItWorks">How it works</a>
                 </div>
             </div>
-
-            <div class="howItWorks">
-                    <div class="header">
-                            <div class="logo">
-                                <!-- logo -->
-                                <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
-                            </div>
-                            <div class="login" >
-                                <a href="/login">Login</a>
-                            </div>
-                          </div>
-                <div class="banner1">            
-                    <h1>Welcome to the Budget Hobo</h1>
+            <div class="list2">
+                <div class="listIcon2">
+                    <span><i class="fab fa-github fa-lg"></i></span>
+                    <span><i class="fab fa-instagram fa-lg"></i></span>
+                    <span><i class="fab fa-facebook fa-lg"></i></span>
                 </div>
-                <div class="worksTitle">
-                        <h2>The Budget Hobo allows the user to set up a budget,
-                         download your bank transactions, and view your budget performance.</h2>
-                         <h3>How It Works</h3>
-
-                         <p>- Register/Login</p>
-                         <p>- Set Up Budget</p>
-                         <p>- Connect to Bank</p>
-                         <p>- download transactions</p>
-                            
-                         <p>- Graphs & Reports</p>
-                              -spending % of actual; % of budget
+                <div class="listName2">
+                    <a href="https://github.com/brandonhdez7/backendProject.git" target="_blank">Github</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
                 </div>
-                <div  class="worksParagraph">
-                    <h3>Registration</h3>
-                            <p>1. Click on "Sign Up Now" and the registration Sign Up</p>
-                            <p>panel will be displayed.</p>
-                            <p>2. Review the Privacy Policy and Terms and Conditions</p>
-                            <p>3. Enter your email address and create a password</p>
-                            <p>4. Click on Sign Up and you're all set up</p>
-                            
-                                <h3>Log In</h3>
-                            <p>1. Click on "Login" and the Login panel will be displayed.</p>
-                            <p>2. Enter your email address and password</p>
-                            <p>3. Click on Enter and your Dasboard will be displayed</p>
-                            
-                            
-                            <h2>Monthly Budget Set Up</h2>
-                            <h3>Income Categories - income categories are for any income
-                            that you estimate receiving for the month</h3>
-                            <p>- Salary - enter your moonthy salary (check amount)</p>
-                            <p>- Other Income - enter any other income amunts
-                              you anticipate receiving for the month</p>
-                            
-                            <h3>Expense Categories</h3>
-                            <p>housing - rent or mortgage amount</p>
-                            <p>homeInsurance - renters or homeowners insurance amount</p>
-                            <p> homeGas - gas bill for apartment or home</p>
-                                <p> homeElectric - electric bill for apartment or home</p>
-                            <p>  homeEntertainment - cable tv or dish bill</p>
-                            <p>   autoLoan - car loan payment if any</p>
-                             <p>   autoRepair - auto repairs</p>
-                                <p> autoGas - monthly gas allowance</p>
-                            <p> phoneBill - phone bill for home phone and any mobile phones</p>
-                          <p> groceries - amount spent directly on groceries</p>
-                         <p>  homeSupplies - bathroom supplies, kitchen supplies, etc...</p>
-                          <p> eatingOut - amounts spent on take out and dining out </p>                                 <p>   clothing - amount spent on clothing
-                               <p> vacation - amount estimated to save for that well deserved
-                                         vacation</p>
-                            <p>   miscExp - any expense that is not categorized</p>
-                            
-                            <h3>Actual Expenditures</h3>
-                             <p>  Connect to your bank and download transactions</p>
-                            <p>  Review and update expense categories</p>
-                            <p> Upload/Import into budget</p>
-                            
-                            <h3>Budget Review</h3>
-                              <p> Weekly Snapshot</p>
-                              <p> Monthly Snapshot</p>
-                             <p> Annual Review</p>
-                </div>
-
             </div>
+            <div class="list3">
+                <div class="listIcon3">
+                    <span><i class="fas fa-briefcase fa-lg"></i></span>
+                    <span><i class="fas fa-handshake fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                </div>
+                <div class="listName3">
+                    <a href="#">Careers</a>
+                    <a href="#">Privacy Agreement</a>
+                    <a href="#">Settings</a>
+                </div>
+            </div>   
+        </div>
+    </div>
+
+<div class="ProfileSettings">
+    <div class="header">
+        <div class="logo">
+        <!-- logo -->
+            <i class="fas fa-wallet fa-lg"></i><a href="#">The Budget Hobo</a>
+        </div>
+        <div class="login">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="welcomeBack">
+        <h3>Howdy <%= name %></h3>
+    </div>
+    <div class="settings">
+        
+            <!-- <div class="container"> -->
+                <div class="jumbotron">
+                    <h1>Welcome to the Budget Hobo!!</h1>
+                    <p>The Budget Hobo allows the user to set up a budget, 
+                       download your bank transactions, and view your budget performance.</p>
+                    
+                    <!-- <div class="container"> -->
+                            <!-- <div class="row"> -->
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    <p>
+                                        <img class="img-responsive" src="/public/images/Screen Shot 2019-02-02 at 8.47.17 PM.png"/>
+                                    </p>
+                                    <ol><strong>Profile</strong> 
+                                        <li>Click on the “Profile” link and the Basic Info
+                                            panel will be displayed.</li>
+                                        <li>Enter your User Name, Email, and password twice</li>
+                                        <li>Click on Save to save or cancel to abort</li>                                
+                                    </ol>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.57 PM.png"/>
+                                    </p>
+                    
+                                    <ol><strong>Monthly Budget Set Up</strong> 
+                                        <li>Enter the amount you want to budget and click on
+                                            "calculate" and your total Balance and Total Budget
+                                            will auto-fill</li>
+                                        <li>As expenses come in, enter or select your 
+                                            expense category</li>
+                                        <li>Enter your expense amount and click on add expense,
+                                            your total expense will increase and your Total Balance
+                                            balance will decrease
+                                        </li>                                
+                                    </ol>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.21 PM.png"/>
+                                    </p>
+                
+                                    <ol><strong>Dashboard</strong>
+                                        <li>Click on the Dashboard and you can connect to your bank, 
+                                            verify your credentials, and download yor transactions</li>
+                                        <li>The dashboard also displays your total incom, expenses,
+                                            and total balance</li> 
+                                        <li>Graphs are available for a graphical view of 
+                                            your spending and budget categories</li>                                                            
+                                    </ol>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                    
+                                    <p>
+                                        <img class="img-responsive img-rounded center-block" src="/public/images/Screen Shot 2019-02-02 at 8.44.21 PM.png"/>
+                                    </p>
+                
+                                    <ol><strong>Bank Accounts</strong> 
+                                        <li>Click on connect to bank to use your bank credetials to
+                                            log in to your bank</li>
+                                        <li>Connect to your bank and log in</li> 
+                                        <li>Click on download to download your transactions</li>                                                            
+                                    </ol>
+                                </div>
+                                <div class="clearfix visible-md"></div>
+                            <!-- </div> -->
+            <!-- </div> -->
+
+                </div>
+            <!-- </div> -->
+    </div> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
+
+
+
