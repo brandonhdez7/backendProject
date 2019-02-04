@@ -80,6 +80,7 @@ class UI {
         this.showBalance()
       }
     }
+    
   addExpense(expense){
     const div = document.createElement('div');
     div.classList.add('expense');
