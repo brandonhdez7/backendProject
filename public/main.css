@@ -1047,24 +1047,67 @@ input[type=text], input[type=password] {
       width: 1%;
   }
 
-  .bankConnect {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
 
-  .goBack {
-    background-color: white;
-    color: black;
-    border: 3px solid #4CAF50;
-    background-color: #e7e7e7;
+  .linkBank{
+    width: 95%;
+    background-color: #262626;
+    height: 570px;
+    border-radius: 5px;
+    margin: 10px 0px 10px 0px;
+    display: flex;
+    flex-direction: column;
+  }
+.linkBank1{
+    width: 100%;
+    display: flex;
+    color: #d9d9d9;
+    text-decoration: none; 
+    align-items: center;
+    justify-content: center;
+}
+.linkBank h1{
     text-align: center;
-    width: auto;
+    color: #d9d9d9;
+}
+.linkImg{
+    width: 50%;
+}
+.linkText{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.linkText p{
+    font-size: 25px;
+}
+.linkImg img{
+    width: 400px;
+}
+
+.linkText button{
+    border-radius: 5px;
+    background-color: #00cc99;
+    border: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0px 30px 0px;
+    padding: 10px;
+    width: 150px;
+  }
+  .linkText a{
+    border-radius: 5px;
+    background-color: #00cc99;
+    border: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0px 30px 0px;
+    padding: 10px;
+    width: 200px;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+
   }
 
 
