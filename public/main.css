@@ -901,7 +901,7 @@ input[type=text], input[type=password] {
 }
 
 .jumbotron {
-    margin-bottom: -60px;
+    margin-bottom: auto;
 }
 
 
