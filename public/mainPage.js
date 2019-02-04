@@ -1,3 +1,6 @@
+
+// *******INITIAL CODE BEFORE PASTING FROM MASTER*********
+
 // Get the modal
 var modal = document.getElementById('myModal');
 

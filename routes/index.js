@@ -110,38 +110,40 @@ console.log('????')
  
 });
 
-router.post('/formBudget',upload.single('budget-input'),(req, res)=>{
-  const tmpPath = req.file.path;
-  
-console.log(req.session.uid)
-console.log('????')
 
-  const targetPath = `public/${req.file.originalname}`
+
+// router.post('/formBudget',upload.single('budget-input'),(req, res)=>{
+//   const tmpPath = req.file.path;
   
-  fs.readFile(tmpPath,(error,fileContents)=>{
-      if(error){throw error};
+// console.log(req.session.uid)
+// console.log('????')
+
+//   const targetPath = `public/${req.file.originalname}`
+  
+//   fs.readFile(tmpPath,(error,fileContents)=>{
+//       if(error){throw error};
      
-      fs.writeFile(targetPath,fileContents,(error2)=>{
-          if(error2){throw error2};
+//       fs.writeFile(targetPath,fileContents,(error2)=>{
+//           if(error2){throw error2};
          
-          const insertQuery = `UPDATE users SET totalBuget = ? WHERE id = ?`;
-          connection.query(
-              insertQuery,
-              [req.file.originalname,req.session.uid],
-              (dbError,dbResults)=>
-          {
-              if(dbError){
-                  throw dbError;
-              }else{
-                  // fs.unlink(tmpPath);
-                  req.session.imageProfile = req.file.originalname
-                  res.redirect('/budget');
-              }
-          })
-      });
-  });
+//           const insertQuery = `UPDATE users SET totalBuget = ? WHERE id = ?`;
+//           connection.query(
+//               insertQuery,
+//               [req.file.originalname,req.session.uid],
+//               (dbError,dbResults)=>
+//           {
+//               if(dbError){
+//                   throw dbError;
+//               }else{
+//                   // fs.unlink(tmpPath);
+//                   req.session.imageProfile = req.file.originalname
+//                   res.redirect('/budget');
+//               }
+//           })
+//       });
+//   });
  
-});
+// });
 
 router.post('/loginProcess',(req,res)=>{
   // // login process
@@ -203,7 +205,6 @@ router.get('/budget', function(req, res) {
 });
 
 router.get('/bank', function(req, res) {
-  console.log('in bank route')
   const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
   connection.query(selectQuery,(error, data)=>{
     console.log(data[0].access)
@@ -217,6 +218,8 @@ router.get('/bank', function(req, res) {
     }
   })
 });
+
+
 
 router.get('/profile', function(req, res) {
   res.render('profile',{
@@ -260,6 +263,12 @@ router.get('/howItWorks', function (req, res){
     if(error){throw error;}
   })
 })
+
+router.get('/privacyStatement', function (req, res){
+  res.render('privacyStatement',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
 
 
@@ -279,3 +288,9 @@ module.exports = router;
 //     })
 //   })
 // }
+
+router.get('/careers', function(req, res) {
+  res.render('careers',{
+    if(error){throw error;}
+  });
+});
