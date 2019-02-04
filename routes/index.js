@@ -9,6 +9,7 @@ const config = require('../config');
 const connection = mysql.createConnection(config.db);
 connection.connect();
 
+
 router.use('*',(req, res, next)=>{
   console.log("Middleware is working! from routes/index.js");
   if(req.session.loggedIn){
@@ -80,7 +81,7 @@ router.post('/loginProcess',(req,res)=>{
       // this is the English version of the password the user submitted
       const password = req.body.psw;
       // we now need to get the hashed version fro mthe DB, and compare!
-      const checkPasswordQuery = `SELECT * FROM users WHERE userEmail =?`;
+      const checkPasswordQuery = `SELECT * FROM users WHERE userEmail = ?;`;
       connection.query(checkPasswordQuery,[email],(error, results)=>{
           if(error){throw error;}
           // possibilities:
@@ -101,16 +102,17 @@ router.post('/loginProcess',(req,res)=>{
                   // req.session.id = results[0].id;
                   req.session.uid = results[0].id;
                   req.session.loggedIn = true;
-                  res.redirect('/dashboard?msg=loginSuccess');
                   // response is set, HTTP disconnects, we are done
-              }        
-          }
-      })
+                  
+                  res.redirect('/dashboard?msg=loginSuccess');
+                }        
+              } 
+            })
   })
+
 
 router.get('/dashboard', function(req, res) {
   res.render('dashboard',{
-    // name: res.locals.name,  
     if(error){throw error;}
   });
 });
@@ -120,16 +122,41 @@ router.get('/budget', function(req, res) {
     if(error){throw error;}
   });
 });
+
 router.get('/bank', function(req, res) {
-  res.render('bank',{
-    if(error){throw error;}
-  });
+  console.log('in bank route')
+  const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
+  connection.query(selectQuery,(error, data)=>{
+    if (data[0].access != null){
+      res.render('bank',{
+        if(error){throw error;}
+      });
+    } else {
+      res.redirect('/plaid')
+      // api()
+    }
+  })
 });
+
 router.get('/profile', function(req, res) {
   res.render('profile',{
     if(error){throw error;}
   });
 });
+
+
+  router.get('/plaid', function(req, res){
+    const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
+    connection.query(selectQuery,(err, data)=>{
+      if (data[0].access != null){
+        res.redirect('/bank')
+      } else {
+        res.render('plaid')
+      }
+    })
+  })
+
+
 
 router.get('/logout',(req, res, next)=>{
   // delete all session varibles for this user

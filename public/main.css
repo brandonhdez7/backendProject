@@ -168,10 +168,10 @@ body{
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100%;
     background-color: #404040;
     align-items: center;
     color:  #d9d9d9;
+    height: max-content;
 }
 .header{
     width: 100%;
@@ -215,9 +215,11 @@ body{
     align-items: center;
     justify-content: space-between;
     height: 200px;
+    background-color: #262626;
 }
 .graph1{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 45%;
@@ -868,6 +870,7 @@ input[type=text], input[type=password] {
       flex-direction: column;
       justify-content: center;
      align-items: center;
+     height: max-content;
   }
   .settings {
     width: 95%;
@@ -896,8 +899,6 @@ input[type=text], input[type=password] {
     color:#d9d9d9;
   }
 
-#app {
-    display: none;
-}
+
 
 
