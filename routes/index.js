@@ -176,12 +176,6 @@ router.post('/loginProcess',(req,res)=>{
                   // response is set, HTTP disconnects, we are done
                   
                   res.redirect('/dashboard?msg=loginSuccess');
-<<<<<<< HEAD
-                }        
-              } 
-            })
-  })
-=======
                   req.session.profileImage = results[0].imageProfile
                   // res.redirect('/dashboard?msg=loginSuccess');
                   // response is set, HTTP disconnects, we are done
@@ -189,7 +183,6 @@ router.post('/loginProcess',(req,res)=>{
           }
       })
 })
->>>>>>> master
 
 
 
@@ -213,6 +206,7 @@ router.get('/bank', function(req, res) {
   console.log('in bank route')
   const selectQuery = `SELECT access FROM users WHERE userName LIKE '${res.locals.name}';`;
   connection.query(selectQuery,(error, data)=>{
+    console.log(data[0].access)
     if (data[0].access != null){
       res.render('bank',{
         if(error){throw error;}
