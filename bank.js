@@ -4,7 +4,7 @@
     var handler = Plaid.create({
         apiVersion: 'v2',
         clientName: 'The Budget Hobo',
-        env: 'sandbox',
+        env: 'development',
         product: products,
         key: '6131daca2965f9a28481697d1aa0d4',
         onSuccess: (public_token)=>{
