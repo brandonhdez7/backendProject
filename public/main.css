@@ -197,7 +197,7 @@ body{
     padding-right: 40px;
 }
 .logo i{
-    width: 30px;
+    /* width: 30px; */
     padding-left: 40px;
     position: relative;
     padding-right:5px; 
@@ -908,14 +908,14 @@ input[type=text], input[type=password] {
     padding: 10px;
   }
 
-  .ProfileSettings .welcomeBack{
+   .welcomeBack{
     color:#d9d9d9;
   }
-
-
-
+  
 .jumbotron {
     margin-bottom: auto;
+    background-color: #262626;
+    color:#d9d9d9;
 }
 
   /* how it works */
