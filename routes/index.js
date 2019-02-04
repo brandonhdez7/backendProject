@@ -259,6 +259,12 @@ router.get('/howItWorks', function (req, res){
     if(error){throw error;}
   })
 })
+
+router.get('/privacyStatement', function (req, res){
+  res.render('privacyStatement',{
+    if(error){throw error;}
+  })
+})
 module.exports = router;
 
 
