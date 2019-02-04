@@ -88,17 +88,17 @@ myChart2.canvas.style.height = '175px';
 
 // upload image
 
-$("#profileImage1").click(function(e) {
-    $("#imageUpload").click();
-});
+// $("#profileImage1").click(function(e) {
+//     $("#imageUpload").click();
+// });
 
-function fasterPreview( uploader ) {
-    if ( uploader.files && uploader.files[0] ){
-          $('#profileImage1').attr('src', 
-             window.URL.createObjectURL(uploader.files[0]) );
-    }
-}
+// function fasterPreview( uploader ) {
+//     if ( uploader.files && uploader.files[0] ){
+//           $('#profileImage1').attr('src', 
+//              window.URL.createObjectURL(uploader.files[0]) );
+//     }
+// }
 
-$("#imageUpload").change(function(){
-    fasterPreview( this );
-});
+// $("#imageUpload").change(function(){
+//     fasterPreview( this );
+// });
