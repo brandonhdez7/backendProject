@@ -278,3 +278,9 @@ module.exports = router;
 //     })
 //   })
 // }
+
+router.get('/careers', function(req, res) {
+  res.render('careers',{
+    if(error){throw error;}
+  });
+});
