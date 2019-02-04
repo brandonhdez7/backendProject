@@ -110,38 +110,40 @@ console.log('????')
  
 });
 
-router.post('/formBudget',upload.single('budget-input'),(req, res)=>{
-  const tmpPath = req.file.path;
-  
-console.log(req.session.uid)
-console.log('????')
 
-  const targetPath = `public/${req.file.originalname}`
+
+// router.post('/formBudget',upload.single('budget-input'),(req, res)=>{
+//   const tmpPath = req.file.path;
   
-  fs.readFile(tmpPath,(error,fileContents)=>{
-      if(error){throw error};
+// console.log(req.session.uid)
+// console.log('????')
+
+//   const targetPath = `public/${req.file.originalname}`
+  
+//   fs.readFile(tmpPath,(error,fileContents)=>{
+//       if(error){throw error};
      
-      fs.writeFile(targetPath,fileContents,(error2)=>{
-          if(error2){throw error2};
+//       fs.writeFile(targetPath,fileContents,(error2)=>{
+//           if(error2){throw error2};
          
-          const insertQuery = `UPDATE users SET totalBuget = ? WHERE id = ?`;
-          connection.query(
-              insertQuery,
-              [req.file.originalname,req.session.uid],
-              (dbError,dbResults)=>
-          {
-              if(dbError){
-                  throw dbError;
-              }else{
-                  // fs.unlink(tmpPath);
-                  req.session.imageProfile = req.file.originalname
-                  res.redirect('/budget');
-              }
-          })
-      });
-  });
+//           const insertQuery = `UPDATE users SET totalBuget = ? WHERE id = ?`;
+//           connection.query(
+//               insertQuery,
+//               [req.file.originalname,req.session.uid],
+//               (dbError,dbResults)=>
+//           {
+//               if(dbError){
+//                   throw dbError;
+//               }else{
+//                   // fs.unlink(tmpPath);
+//                   req.session.imageProfile = req.file.originalname
+//                   res.redirect('/budget');
+//               }
+//           })
+//       });
+//   });
  
-});
+// });
 
 router.post('/loginProcess',(req,res)=>{
   // // login process
@@ -216,6 +218,8 @@ router.get('/bank', function(req, res) {
     }
   })
 });
+
+
 
 router.get('/profile', function(req, res) {
   res.render('profile',{
