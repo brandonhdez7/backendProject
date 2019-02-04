@@ -105,7 +105,7 @@ app.post('/get_access_token',(req, res, next)=>{
         if(error) {throw error;}
         // window.location.reload()
         // api()
-        res.redirect('/bank')
+        // res.redirect('/bank')
       })
     });  
     // res.end()
