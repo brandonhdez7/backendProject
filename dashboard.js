@@ -37,6 +37,7 @@
 // });
 
 $.get('/transactions',(data)=>{
+    console.log(data)
     $('#transactions').slideUp(function() {
         // var html = '<tr><th><strong>Name</strong></th><th><strong>Amount</strong></th></tr>';
         var html = ''

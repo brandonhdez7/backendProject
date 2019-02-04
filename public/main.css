@@ -365,6 +365,12 @@ hr{
     display: flex;
     flex-direction: column;
 }
+.transactionName {
+    width: 95%;
+  
+
+    
+}
 .transactionName a{
     text-decoration: none;
     color: #d9d9d9;
