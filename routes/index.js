@@ -176,10 +176,20 @@ router.post('/loginProcess',(req,res)=>{
                   // response is set, HTTP disconnects, we are done
                   
                   res.redirect('/dashboard?msg=loginSuccess');
+<<<<<<< HEAD
                 }        
               } 
             })
   })
+=======
+                  req.session.profileImage = results[0].imageProfile
+                  // res.redirect('/dashboard?msg=loginSuccess');
+                  // response is set, HTTP disconnects, we are done
+              }        
+          }
+      })
+})
+>>>>>>> master
 
 
 

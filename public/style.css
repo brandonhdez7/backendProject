@@ -101,17 +101,14 @@ Hide things
 
 */
 
-#app { 
+/* #app { 
   display: none;
-}
- */
+} */
+ 
 
-<<<<<<< HEAD
-=======
 /*#steps {
   display: none;
 } */
 .jumbotron {
   margin-bottom: -60px;
 }
->>>>>>> ron
