@@ -1107,8 +1107,37 @@ input[type=text], input[type=password] {
 
   }
 
-
-
+  .linkText button:hover{
+    background-color: #009973;  
+  }
+  .linkText a:hover {
+    background-color: #009973;
+} 
+  .cancelbtn a{
+      text-decoration: none;
+      color: black;
+  }
+.cancelbtn:hover, .signupbtn:hover{
+    background-color: #009973;  
+}
+.cancelbtn1:hover, .signupbtn1:hover{
+    background-color: #009973;  
+}
+.budgetButton:hover{
+        background-color: #009973;  
+    
+}
+.expense-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.expense-item h6{
+    padding-right: 60px;
+}
+.expense-item .fas{
+    padding-right: 20px;
+}
 
 
 

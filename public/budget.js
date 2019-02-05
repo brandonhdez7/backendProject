@@ -85,9 +85,9 @@ class UI {
   addExpense(expense){
     const div = document.createElement('div');
     div.classList.add('expense');
-    div.innerHTML = `<div class="expense-item d-flex justify-content-between align-items-baseline">
+    div.innerHTML = `<div class="expense-item ">
   
-    <h6 class="expense-title mb-0 text-uppercase list-item">- ${expense.title}</h6>
+    <h6 class="expense-title mb-0 text-uppercase list-item"> ${expense.title}</h6>
     <h5 class="expense-amount mb-0 list-item">${expense.Amount}</h5>
   
     <div class="expense-icons list-item">
@@ -145,7 +145,7 @@ deleteExpense(element){
 }
 }
   
-function eventListenters(){
+function EventListener(){
 const budgetForm = document.getElementById('budget-form')
 const expenseForm = document.getElementById('expense-form')
 const expenseList = document.getElementById('expense-list')
@@ -200,7 +200,7 @@ expenseList.addEventListener('click', function(event){
 
 
 document.addEventListener('DOMContentLoaded', function(){
-eventListenters();
+    EventListener();
 })
   
 
