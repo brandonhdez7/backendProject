@@ -57,12 +57,15 @@ router.post('/registerProcess',(req,res)=>{
         VALUES
         (?,?,?)`;
       connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
+        console.log(req.session.name)
           if(error2){throw error2;}
-          req.session.name = req.body.name;
-          req.session.email = req.body.email;
-          req.session.loggedIn = true;
-          res.redirect('/dashboard?msg=registerSuccess');
-        })
+
+            req.session.name = req.body.name
+            req.session.email = req.body.email;
+            req.session.uid = results2.insertId
+            req.session.loggedIn = true;                  
+            res.redirect('/dashboard?msg=loginSuccess');
+      })
     }
   })
 })
@@ -125,7 +128,6 @@ router.post('/loginProcess',(req,res)=>{
           }else{
               req.session.name = results[0].userName;
               req.session.email = results[0].email;
-              // req.session.id = results[0].id;
               req.session.uid = results[0].id;
               req.session.loggedIn = true;                  
               req.session.imageProfile = results[0].imageProfile
