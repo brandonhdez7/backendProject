@@ -27,6 +27,7 @@ router.use('*',(req, res, next)=>{
       }else{
         res.locals.imageProfile = '/user_add-512.png'
       }
+      
   }else{
       res.locals.name = "null";
       res.locals.uid = "";
