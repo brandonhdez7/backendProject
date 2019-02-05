@@ -271,26 +271,10 @@ router.get('/privacyStatement', function (req, res){
 })
 module.exports = router;
 
-
-
-// function fakeLogin(req, res){
-//   return new Promise((resolve, reject)=>{
-//     const checkPasswordQuery = `SELECT * FROM users WHERE userEmail = 'brandonhdez7@gmail.com'`;
-//     connection.query(checkPasswordQuery,(error, results)=>{
-//       req.session.name = results[0].userName;
-//       req.session.email = results[0].email;
-//       // req.session.id = results[0].id;
-//       req.session.uid = results[0].id;
-//       req.session.loggedIn = true;
-//       req.session.profileImage = results[0].imageProfile
-//       // res.redirect('/dashboard?msg=loginSuccess');
-//       resolve('done');
-//     })
-//   })
-// }
-
 router.get('/careers', function(req, res) {
   res.render('careers',{
     if(error){throw error;}
   });
 });
+
+router.post('/profileChange')

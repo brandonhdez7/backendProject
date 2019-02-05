@@ -393,6 +393,11 @@ hr{
     align-items: center;  
 }
 
+.graph9 img{
+    height: 200px;
+    weight: 100%;
+}
+
 
 /* budget */
 
