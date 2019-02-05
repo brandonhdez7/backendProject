@@ -5,10 +5,10 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Travel", "Food", "Payment", "Shopping", "Entertainment", "Other"],
+        labels: ["Travel", "Food", "Bills", "Shopping", "Entertainment", "Other"],
         datasets: [{
             label: 'Monthly Spending',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [5, 9.9, 71.3, 4, .7, 9],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
