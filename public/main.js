@@ -5,9 +5,9 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["Travel", "Food", "Payment", "Shopping", "Entertainment", "Other"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Monthly Spending',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
