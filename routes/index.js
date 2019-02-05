@@ -112,7 +112,6 @@ console.log('????')
  
 });
 
-<<<<<<< HEAD
 router.post('/formBudget',(req, res, next)=>{
   // console.log('totalBudget2', req.body)
   console.log(req.body)
@@ -134,9 +133,6 @@ router.post('/formBudget',(req, res, next)=>{
 
 
 
-=======
-// Login Process
->>>>>>> db79e0193016348c48cad2081d3dfe374337cf2b
 router.post('/loginProcess',(req,res)=>{
   const email = req.body.email;
   const password = req.body.psw;
