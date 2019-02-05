@@ -1,12 +1,56 @@
-<div class="careers">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BudgetHobo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <% include header %>
+</head>
 
+<body>
+    <div class="container">
+    <!-- navbar -->
+    <% include navbar %>
+    <div class="ProfileSettings">
+        <div class="header">
+            <div class="logo">
+                <!-- logo -->
+                <i class="fas fa-wallet fa-lg"></i><a href="/">The Budget Hobo</a>
+            </div>
+            <div class="login">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="welcomeBack">
+            <h3>Heller <%= name %></h3>
+        </div>
+        <div class="settings">
+            <!-- <div class="container"> -->
+            <div class="jumbotron">
+                <h1>Welcome to the Budget Hobo!!</h1>
+                <p>
+                    The Budget Hobo allows you to set up a budget, 
+                    download your bank transactions, and view your budget performance.
+                </p>
 
-
-    <h1><ins>We are currently not hiring!!!</ins></h1>
+    <div class="careers">
+        <h1><ins>We are currently not hiring!!!</ins></h1>
+        <h2>Description</h2>
+        <p>
+            Bacon ipsum dolor sit amet salami jowl corned beef, 
+            andouille flank tongue ball tip kielbasa pastrami tri-tip meatloaf short loin beef biltong. 
+            Cow bresaola ground round strip steak fatback meatball shoulder leberkas pastrami 
+            sausage corned beef t-bone pork belly drumstick.
+        </p>
 
         <h2>Requirments</h2>
             <ul>
-                <li>5+ experience</li>
+                <li>5+ yrs experience</li>
                 <li>5th grade diploma</li>
                 <li>fluent in lorem</li>
                 <li>basic experience in Fortnite</li>
@@ -27,4 +71,12 @@
             <br>
 
             <button><a href="/dashboard">Return to Dashboard</a></button>
+    </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>
