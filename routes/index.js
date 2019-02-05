@@ -18,7 +18,6 @@ router.use('*',(req, res, next)=>{
   console.log("Middleware is working! from routes/index.js");
   if(req.session.loggedIn){
       // res.locals is the variable that gets sent to the view
-      // req.session.name = "someName";
       res.locals.name = req.session.name;
       res.locals.uid = req.session.uid;
       res.locals.email = req.session.email;
@@ -60,6 +59,7 @@ router.post('/registerProcess',(req,res)=>{
       connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
         console.log(req.session.name)
           if(error2){throw error2;}
+
             req.session.name = req.body.name
             req.session.email = req.body.email;
             req.session.uid = results2.insertId
