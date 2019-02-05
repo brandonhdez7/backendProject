@@ -23,16 +23,16 @@ router.use('*',(req, res, next)=>{
       res.locals.email = req.session.email;
       res.locals.loggedIn = true;
       if(req.session.imageProfile){
-        res.locals.profileImage = req.session.imageProfile
+        res.locals.imageProfile = req.session.imageProfile
       }else{
-        res.locals.profileImage = '/user_add-512.png'
+        res.locals.imageProfile = '/user_add-512.png'
       }
   }else{
       res.locals.name = "null";
       res.locals.uid = "";
       res.locals.email = "";
       res.locals.loggedIn = false;
-      res.locals.profileImage = ''
+      res.locals.imageProfile = ''
   }
   next();
 })
@@ -128,7 +128,7 @@ router.post('/loginProcess',(req,res)=>{
               // req.session.id = results[0].id;
               req.session.uid = results[0].id;
               req.session.loggedIn = true;                  
-              req.session.profileImage = results[0].imageProfile
+              req.session.imageProfile = results[0].imageProfile
               res.redirect('/dashboard?msg=loginSuccess');
           }        
       }
