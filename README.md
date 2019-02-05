@@ -52,9 +52,10 @@ Click on connect to bank to use your bank credetials to log in to your bank.
 * Bootstrap - page layout and design
 * Fontawesome - page layout and design
 * JavaScript - program functions
-* JQuery - 
-* Node.js - 
-* Express - app generator
+* JQuery - Budget and Graphs, API
+* Node.js/Express - app generator, API
+* Plaid - API, Secured Institution connection
+
 
 # Challenges & Solutions
 * Git & GitHub
@@ -71,8 +72,8 @@ Click on connect to bank to use your bank credetials to log in to your bank.
 
 # Stretch Goals
 * Budget vs. Actual
-* B
-* C
+* Increase database
+* Income API
 
 
 # Authors
