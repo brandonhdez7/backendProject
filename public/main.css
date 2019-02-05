@@ -563,9 +563,9 @@ form input .enterExpense{
     box-shadow: 1px 1px 10px 5px #888888;
 }
 .banner h1{
-    width: 400px;
+    width: 450px;
     position: relative;
-    left: 150px;
+    left: 125px;
     font-size: 40px;
 }
 .banner button{
