@@ -233,13 +233,13 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 45%;
+    width: 49%;
     border: 1px solid #d9d9d9;
     height: 175px;
     margin: 15px;
 }
 .graph2{
-    width: 45%;
+    width: 49%;
     border: 1px solid #d9d9d9;
     margin: 15px;
     height: 175px;
@@ -367,9 +367,9 @@ hr{
 }
 .transactionName {
     width: 95%;
-  
-
-    
+}
+#transactions td {
+    padding-bottom: 5px;
 }
 .transactionName a{
     text-decoration: none;
