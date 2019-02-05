@@ -38,16 +38,16 @@
                             <div class="budget-feedback">budget feedback</div>
                         <h1 class="budgetText">Enter your budget</h1>
                         <input id="budget-input" name="totalBudget" required min="2">
-                        <input type="hidden" id="name-field" name="name" value=<%= name%>>
+                        <input type="hidden" id="name-field" name="name" value='<%= name%>'>
                         <button type="submit" class="budgetButton" id="budget-submit">calculate</button>
                     </form>
-                    <form method="POST" id="expense-form" class="expense-form" action="/formBudget">
+                    <form method="POST" id="expense-form" class="expense-form" action="/pieBudget">
                         <div class="expense1">
                                 <div class="budget-feedback">budget feedback</div>
                             <h1 class="budgetText">Enter your expense</h1>
                             <input type="text" class="enterExpense" id="expense-input" name="totalValue">
                         </div>
-                        <div class="expense2"> 
+                        <div class="expense2">
                             <h1 class="budgetTitle">Enter expense amount</h1>
                             <input type="number" id="amount-input" name="totalBalance">
                             <button type="submit" class="budgetButton" id="expense-submit">add expense</button>
