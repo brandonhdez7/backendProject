@@ -26,8 +26,7 @@ router.use('*',(req, res, next)=>{
         res.locals.imageProfile = req.session.imageProfile
       }else{
         res.locals.imageProfile = '/user_add-512.png'
-      }
-      
+      }      
   }else{
       res.locals.name = "null";
       res.locals.uid = "";
@@ -42,7 +41,6 @@ router.use('*',(req, res, next)=>{
 router.get('/', function(req, res, next) {
   res.render('index', { });
   console.log('homepage/index.js')
-
 });
 
 // User creates login
@@ -60,7 +58,6 @@ router.post('/registerProcess',(req,res)=>{
       connection.query(insertUserQuery,[req.body.name, req.body.email, hashedPass],(error2, results2)=>{
         console.log(req.session.name)
           if(error2){throw error2;}
-
             req.session.name = req.body.name
             req.session.email = req.body.email;
             req.session.uid = results2.insertId
@@ -73,7 +70,6 @@ router.post('/registerProcess',(req,res)=>{
 
 router.get('/login', function(req, res) {
   // fakeLogin(req, res)
-  
   res.render('login',{
     if(error){throw error;}
   });
@@ -81,19 +77,14 @@ router.get('/login', function(req, res) {
 
 
 router.post('/formSubmit',upload.single('profile_photo'),(req, res)=>{
-  const tmpPath = req.file.path;
-  
+const tmpPath = req.file.path;
 console.log(req.session.uid)
-console.log('????')
-
+// console.log('????')
   const targetPath = `public/${req.file.originalname}`
-  
   fs.readFile(tmpPath,(error,fileContents)=>{
       if(error){throw error};
-     
       fs.writeFile(targetPath,fileContents,(error2)=>{
           if(error2){throw error2};
-         
           const insertQuery = `UPDATE users SET imageProfile = ? WHERE id = ?`;
           connection.query(
               insertQuery,
@@ -109,8 +100,7 @@ console.log('????')
               }
           })
       });
-  });
- 
+  }); 
 });
 
 router.post('/formBudget',(req, res, next)=>{
@@ -130,10 +120,6 @@ router.post('/formBudget',(req, res, next)=>{
       res.json(results);
     }
   })
-})
-
-router.post('/pieBudget', (req, res, next)=>{
-  console.log('khanh')
 })
 
 router.post('/loginProcess',(req,res)=>{
