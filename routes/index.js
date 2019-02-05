@@ -110,40 +110,26 @@ console.log('????')
  
 });
 
+router.post('/formBudget',(req, res, next)=>{
+  // console.log('totalBudget2', req.body)
+  console.log(req.body)
+  const totalBudget = req.body.totalBudget;
+  // const totalBalance = req.body.totalBalance;
+  const insertQuery = `UPDATE users SET totalBudget = ? WHERE userName LIKE ?;`
+  console.log(insertQuery);
+  console.log(totalBudget);
+  console.log('hello')
+  connection.query(insertQuery,[totalBudget,req.body.name], (error, results)=>{
+    if(error){
+      throw error;
+    }else{
+      console.log('formbudget');
+      res.json(results);
+    }
+  })
+})
 
 
-// router.post('/formBudget',upload.single('budget-input'),(req, res)=>{
-//   const tmpPath = req.file.path;
-  
-// console.log(req.session.uid)
-// console.log('????')
-
-//   const targetPath = `public/${req.file.originalname}`
-  
-//   fs.readFile(tmpPath,(error,fileContents)=>{
-//       if(error){throw error};
-     
-//       fs.writeFile(targetPath,fileContents,(error2)=>{
-//           if(error2){throw error2};
-         
-//           const insertQuery = `UPDATE users SET totalBuget = ? WHERE id = ?`;
-//           connection.query(
-//               insertQuery,
-//               [req.file.originalname,req.session.uid],
-//               (dbError,dbResults)=>
-//           {
-//               if(dbError){
-//                   throw dbError;
-//               }else{
-//                   // fs.unlink(tmpPath);
-//                   req.session.imageProfile = req.file.originalname
-//                   res.redirect('/budget');
-//               }
-//           })
-//       });
-//   });
- 
-// });
 
 router.post('/loginProcess',(req,res)=>{
   // // login process
@@ -199,6 +185,7 @@ router.get('/dashboard', function(req, res) {
 });
 
 router.get('/budget', function(req, res) {
+  console.log('budget')
   res.render('budget',{
     if(error){throw error;}
   });
