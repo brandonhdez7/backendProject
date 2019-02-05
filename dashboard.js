@@ -56,12 +56,12 @@ $.get('/transactions',(data)=>{
 $.get('/balance', (data)=>{
     $('#status').slideUp(function() {
         let balData = data.balance
-        let html = '<tr><th><strong>Name</strong></th><th><strong>Balance</strong></th><th><strong>Subtype</strong></th></tr>'
+        let html = '<tr><th><strong>Name</strong></th><th><strong>Type</strong></th><th><strong>Balance</strong></th></tr>'
         balData.accounts.forEach((account, idx)=>{
             html += `<tr>
                 <td>${account.name}</td>
-                <td>${account.balances.available != null ? account.balances.available : account.balances.current}</td>
                 <td>${account.subtype}</td>
+                <td>$${account.balances.available != null ? account.balances.available : account.balances.current}</td>
                 <tr>`
         });
         $(this).html(html).slideDown();
