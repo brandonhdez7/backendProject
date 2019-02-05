@@ -1,3 +1,5 @@
+let y = []
+let x = []
 class UI {
     constructor() {
       this.budgetFeedback = document.querySelector(".budget-feedback");
@@ -83,12 +85,13 @@ class UI {
     }
     
   addExpense(expense){
+      console.log(expense)
     const div = document.createElement('div');
     div.classList.add('expense');
     div.innerHTML = `<div class="expense-item d-flex justify-content-between align-items-baseline">
   
-    <h6 class="expense-title mb-0 text-uppercase list-item">- ${expense.title}</h6>
-    <h5 class="expense-amount mb-0 list-item">${expense.Amount}</h5>
+    <h6 class="expense-title mb-0 text-uppercase list-item">${expense.title}</h6>
+    <h5 class="expense-amount mb-0 list-item">${expense.amount}</h5>
   
     <div class="expense-icons list-item">
   
@@ -101,6 +104,52 @@ class UI {
     </div>
    </div>`;
    this.expenseList.appendChild(div)
+   
+   x.push(expense.title)
+   y.push(expense.amount)
+   console.log(x)
+   console.log(y)
+   var ctx = document.getElementById("myChart3").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: x,
+                datasets: [{ 
+                    label: '# of Votes',
+                    data: y,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend:{
+                    position: 'right',
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                
+                }   
+            }
+        })
 }
 
 
@@ -202,51 +251,60 @@ expenseList.addEventListener('click', function(event){
 document.addEventListener('DOMContentLoaded', function(){
 eventListenters();
 })
-  
+
+// $('.budgetButton').click(()=>{
+//     $.post('/formBudget',(req, res, next)=>{
+//         // console.log(req.body.totalValue)
+//         // console.log(req.body.totalBalance)
+//         // console.log('totalBudget2', req.body)
+//         console.log('hello')
+//         var ctx = document.getElementById("myChart3").getContext('2d');
+//         var myChart = new Chart(ctx, {
+//             type: 'doughnut',
+//             data: {
+//                 labels: ['car'],
+//                 datasets: [{ 
+//                     label: '# of Votes',
+//                     data: [20,],
+//                     backgroundColor: [
+//                         'rgba(255, 99, 132, 0.2)',
+//                         'rgba(54, 162, 235, 0.2)',
+//                         'rgba(255, 206, 86, 0.2)',
+//                         'rgba(75, 192, 192, 0.2)',
+//                         'rgba(153, 102, 255, 0.2)',
+//                         'rgba(255, 159, 64, 0.2)'
+//                     ],
+//                     borderColor: [
+//                         'rgba(255,99,132,1)',
+//                         'rgba(54, 162, 235, 1)',
+//                         'rgba(255, 206, 86, 1)',
+//                         'rgba(75, 192, 192, 1)',
+//                         'rgba(153, 102, 255, 1)',
+//                         'rgba(255, 159, 64, 1)'
+//                     ],
+//                     borderWidth: 1
+//                 }]
+//             },
+//             options: {
+//                 legend:{
+//                     position: 'right',
+//                     scales: {
+//                         yAxes: [{
+//                             ticks: {
+//                                 beginAtZero:true
+//                             }
+//                         }]
+//                     }
+                
+//                 }   
+//             }
+//         });
+          
+//     })
+// })
 
 
-var ctx = document.getElementById("myChart3").getContext('2d');
 
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        legend:{
-            position: 'right',
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        
-        }   
-    }
-});
 
 
 

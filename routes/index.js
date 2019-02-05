@@ -132,7 +132,9 @@ router.post('/formBudget',(req, res, next)=>{
   })
 })
 
-
+router.post('/pieBudget', (req, res, next)=>{
+  console.log('khanh')
+})
 
 router.post('/loginProcess',(req,res)=>{
   const email = req.body.email;
