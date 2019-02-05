@@ -14,6 +14,7 @@ class UI {
       this.expenseList = document.getElementById("expense-list");
       this.itemList = [];                 
       this.itemID = 0;
+      this.submitBudgetForm = this.submitBudgetForm.bind(this)
     }
     submitBudgetForm(){
       // console.log("hello")
@@ -152,8 +153,33 @@ const expenseList = document.getElementById('expense-list')
 const ui = new UI()
 
 budgetForm.addEventListener('submit', function(event){
+    console.log("loooo")
     event.preventDefault();
-    ui.submitBudgetForm();
+    const totalBudget = document.getElementById('budget-input').value;
+    const expense = document.querySelector('#expense-input').value;
+    console.log(expense)
+    const amount = document.querySelector('#amount-input').value;
+    const name = document.querySelector('#name-field').value;
+    const ajaxRequest = $.ajax({
+        type: 'POST',
+        url: 'http://localhost:4000/formBudget',
+        data: {
+            totalBudget,
+            expense,
+            amount,
+            name
+        },
+        dataType: 'json',
+    });
+    ajaxRequest.then((data)=>{
+        console.log(data)
+        // if(data.msg === "success"){
+            ui.submitBudgetForm();
+        // }else{
+        //     throw "ajax failed :(";
+        // }
+        
+    })
 })
 
 expenseForm.addEventListener('submit', function(event){
@@ -240,3 +266,11 @@ var myChart = new Chart(ctx, {
 // $("#imageUpload").change(function(){
 //     fasterPreview( this );
 // });
+
+// const aPromise = new Promise((resolve, reject)=>{
+//     setTimeout(()=>{
+//         resolve("100 ms have passed")
+//     },100)
+// })
+
+

@@ -200,6 +200,25 @@ app.get('/',(req,res,next)=>{
 
 })
 
+// app.post('/formBudget',(req, res, next)=>{
+//   const totalBudget = req.body.totalBudget;
+//   console.log('totalBudget: ',totalBudget)
+//   // const totalBalance = req.body.totalBalance;
+//   const insertQuery = `UPDATE users SET totalBudget = ? WHERE userName LIKE '${res.locals.name}';`
+//   console.log(insertQuery);
+//   console.log('hello')
+//   connection.query(insertQuery,[totalBudget], (error, results)=>{
+//     if(error){
+//       throw error;
+//     }else{
+//   console.log('formbudget');
+//   res.redirect('/budget');
+//     }
+//   })
+// })
+
+
+
 // app.post('/formSubmit',upload.single('profile_photo'),(req, res)=>{
   
 //   const tmpPath = req.file.path;
