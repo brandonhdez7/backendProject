@@ -1,5 +1,17 @@
 let y = []
 let x = []
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+// removeA(ary, 'seven');
 class UI {
     constructor() {
       this.budgetFeedback = document.querySelector(".budget-feedback");
@@ -109,48 +121,9 @@ class UI {
    y.push(expense.amount)
    console.log(x)
    console.log(y)
-   var ctx = document.getElementById("myChart3").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: x,
-                datasets: [{ 
-                    label: '# of Votes',
-                    data: y,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                legend:{
-                    position: 'right',
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    }
-                
-                }   
-            }
-        })
+   pieGraph(x, y)
 }
+
 
 
 totalExpense(){
@@ -182,18 +155,72 @@ editExpense(element){
     this.showBalance();
 }
 deleteExpense(element){
+    // console.log(JSON.parse(element))
+    // console.log(element.title)
     let id = parseInt(element.dataset.id);
     let parent = element.parentElement.parentElement.parentElement;
+    let expense = this.itemList.filter(function(item){
+        return item.id === id;
+        });
+    console.log(expense)
     this.expenseList.removeChild(parent);
 
     let tempList = this.itemList.filter(function(item){
-    return item.id !=id;
+    return item.id != id;
     })
+    // console.log(tempList[0].title)
     this.itemList = tempList;
     this.showBalance();
+    removeA(x, expense[0].title);
+    removeA(y, expense[0].amount);
+    pieGraph(x, y)
 }
 }
-  
+function pieGraph(title, amount){
+
+    var ctx = document.getElementById("myChart3").getContext('2d');
+     var myChart = new Chart(ctx, {
+         type: 'doughnut',
+         data: {
+             labels: title,
+             datasets: [{ 
+                 label: '# of Votes',
+                 data: amount,
+                 backgroundColor: [
+                     'rgba(255, 99, 132, 0.2)',
+                     'rgba(54, 162, 235, 0.2)',
+                     'rgba(255, 206, 86, 0.2)',
+                     'rgba(75, 192, 192, 0.2)',
+                     'rgba(153, 102, 255, 0.2)',
+                     'rgba(255, 159, 64, 0.2)'
+                 ],
+                 borderColor: [
+                     'rgba(255,99,132,1)',
+                     'rgba(54, 162, 235, 1)',
+                     'rgba(255, 206, 86, 1)',
+                     'rgba(75, 192, 192, 1)',
+                     'rgba(153, 102, 255, 1)',
+                     'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1
+             }]
+         },
+         options: {
+             legend:{
+                 position: 'right',
+                 scales: {
+                     yAxes: [{
+                         ticks: {
+                             beginAtZero:true
+                         }
+                     }]
+                 }
+             
+             }   
+         }
+     })
+}
+
 function EventListener(){
 const budgetForm = document.getElementById('budget-form')
 const expenseForm = document.getElementById('expense-form')
