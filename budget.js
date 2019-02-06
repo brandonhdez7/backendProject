@@ -11,7 +11,6 @@ function removeA(arr) {
     return arr;
 }
 
-// removeA(ary, 'seven');
 class UI {
     constructor() {
       this.budgetFeedback = document.querySelector(".budget-feedback");
@@ -119,8 +118,6 @@ class UI {
    
    x.push(expense.title)
    y.push(expense.amount)
-   console.log(x)
-   console.log(y)
    pieGraph(x, y)
 }
 
@@ -282,57 +279,6 @@ expenseList.addEventListener('click', function(event){
 document.addEventListener('DOMContentLoaded', function(){
     EventListener();
 })
-
-// $('.budgetButton').click(()=>{
-//     $.post('/formBudget',(req, res, next)=>{
-//         // console.log(req.body.totalValue)
-//         // console.log(req.body.totalBalance)
-//         // console.log('totalBudget2', req.body)
-//         console.log('hello')
-//         var ctx = document.getElementById("myChart3").getContext('2d');
-//         var myChart = new Chart(ctx, {
-//             type: 'doughnut',
-//             data: {
-//                 labels: ['car'],
-//                 datasets: [{ 
-//                     label: '# of Votes',
-//                     data: [20,],
-//                     backgroundColor: [
-//                         'rgba(255, 99, 132, 0.2)',
-//                         'rgba(54, 162, 235, 0.2)',
-//                         'rgba(255, 206, 86, 0.2)',
-//                         'rgba(75, 192, 192, 0.2)',
-//                         'rgba(153, 102, 255, 0.2)',
-//                         'rgba(255, 159, 64, 0.2)'
-//                     ],
-//                     borderColor: [
-//                         'rgba(255,99,132,1)',
-//                         'rgba(54, 162, 235, 1)',
-//                         'rgba(255, 206, 86, 1)',
-//                         'rgba(75, 192, 192, 1)',
-//                         'rgba(153, 102, 255, 1)',
-//                         'rgba(255, 159, 64, 1)'
-//                     ],
-//                     borderWidth: 1
-//                 }]
-//             },
-//             options: {
-//                 legend:{
-//                     position: 'right',
-//                     scales: {
-//                         yAxes: [{
-//                             ticks: {
-//                                 beginAtZero:true
-//                             }
-//                         }]
-//                     }
-                
-//                 }   
-//             }
-//         });
-          
-//     })
-// })
 
 
 
