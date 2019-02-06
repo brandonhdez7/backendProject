@@ -140,6 +140,7 @@ totalExpense(){
 editExpense(element){
     let id = parseInt(element.dataset.id);
     let parent = element.parentElement.parentElement.parentElement;
+    
     this.expenseList.removeChild(parent);
     // delete from the dom
     let expense = this.itemList.filter(function(item){
@@ -153,6 +154,9 @@ editExpense(element){
     })
     this.itemList = tempList;
     this.showBalance();
+    removeA(x, expense[0].title)
+    removeA(y, expense[0].amount)
+    pieGraph(x, y)
 }
 deleteExpense(element){
     // console.log(JSON.parse(element))
