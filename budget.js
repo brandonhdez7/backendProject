@@ -1,6 +1,6 @@
 let y = []
 let x = []
-function removeA(arr) {
+function removeExpense(arr) {
     var what, a = arguments, L = a.length, ax;
     while (L > 1 && arr.length) {
         what = a[--L];
@@ -151,8 +151,8 @@ editExpense(element){
     })
     this.itemList = tempList;
     this.showBalance();
-    removeA(x, expense[0].title)
-    removeA(y, expense[0].amount)
+    removeExpense(x, expense[0].title)
+    removeExpense(y, expense[0].amount)
     pieGraph(x, y)
 }
 deleteExpense(element){
@@ -172,8 +172,8 @@ deleteExpense(element){
     // console.log(tempList[0].title)
     this.itemList = tempList;
     this.showBalance();
-    removeA(x, expense[0].title);
-    removeA(y, expense[0].amount);
+    removeExpense(x, expense[0].title);
+    removeExpense(y, expense[0].amount);
     pieGraph(x, y)
 }
 }
